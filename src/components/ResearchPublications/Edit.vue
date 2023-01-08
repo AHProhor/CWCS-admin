@@ -11,17 +11,17 @@
                     <div class="w-full pb-4 flex">
                         <div class="w-1/2 pr-2">
                             <p class="pb-1 text-gray-500">Title</p>
-                            <InputText type="text" class="w-full dropdown-height" v-model="campaign.title"/>
+                            <InputText type="text" class="w-full dropdown-height" v-model="edit_campaign.title"/>
                         </div>
 
                         <div class="pl-2 w-1/2">
                             <p class="pb-1 text-gray-500">Project</p>
                             <vSelect 
                                 class="text-gray-400"
-                                :options="projects"
+                                :options="all_projects"
                                 :reduce="(title) => title.id" 
                                 label="title" 
-                                v-model="campaign.projects"
+                                v-model="edit_campaign.projects"
                                 placeholder="Select"
                             >
                             </vSelect>
@@ -30,13 +30,13 @@
 
                     <div class="pb-4">
                         <p class="pb-1 text-gray-500">Short Details</p>
-                        <Textarea class="w-full" v-model="campaign.details" :autoResize="true" rows="4" cols="30" />
+                        <Textarea class="w-full" v-model="edit_campaign.details" :autoResize="true" rows="4" cols="30" />
                     </div>
 
-                    <div class="w-full pb-4 flex gap-4">
+                    <!-- <div class="w-full pb-4 flex gap-4">
                         <div class="flex flex-col field col-12 md:col-4 w-full">
                             <label for="icon" class="text-gray-500">Starting Date</label>
-                            <Calendar class="dropdown-height" id="icon" v-model="satrtingDate" :showIcon="true" />
+                            <Calendar class="dropdown-height" id="icon" v-model="startingDate" :showIcon="true" />
                         </div>
                         <div class="flex flex-col field col-12 md:col-4 w-full">
                             <label for="icon" class="text-gray-500">Finishing Date</label>
@@ -46,25 +46,25 @@
                             <p class="text-gray-500">Organizer</p>
                             <InputText type="text" class="w-full dropdown-height"/>
                         </div>
-                    </div>
-
-                    <div class="pb-4">
-                        <p class="pb-1 text-gray-500">Description</p>
-                        <ckeditor
-                            :editor="editor"
-                            v-model="campaign.description"
-                            :config="editorConfig"
-                        ></ckeditor>
-                    </div>
+                    </div> -->
 
                     <div class="pb-4">
                         <p class="pb-1 text-gray-500">Image</p>
                         <div class="flex items-center">
-                            <img v-if="campaign.image" class="h-28 w-32" :src="campaign.image">
-                            <input :class="campaign.image ? 'ml-4' : 'ml-0'" type="file" accept="image/*" @change="uploadImage">
+                            <img class="h-28 w-28" :src="show_image">
+                            <input class="ml-4" type="file" accept="image/*" @change="uplaodImage">
                         </div>
                     </div>
-                    
+
+                    <!-- <div class="pb-4">
+                        <p class="pb-1 text-gray-500">Details</p>
+                        <ckeditor
+                            :editor="editor"
+                            v-model="edit_campaign.description"
+                            :config="editorConfig"
+                        ></ckeditor>
+                    </div> -->
+
                     <div class="flex justify-center py-10">
                         <button @click="submit" class="submit-button">Submit</button>
                     </div>
@@ -94,18 +94,22 @@ export default {
         ClassicEditor
     },
 
+    props:["slug"],
+
     data() {
         return {
             host: "https://cmsapi.smicee.com",
-            satrtingDate: null,
+            startingDate: null,
             finishingDate: null,
-            campaign: {
+            edit_campaign: {
                 title: "",
                 details: "",
                 description:"",
                 projects:null,
                 image: null,
             },
+            show_image:null,
+
             editor: ClassicEditor,
             editorData: "<p>What's on your mind ?</p>",
             editorConfig: {
@@ -138,27 +142,33 @@ export default {
 
     computed: {
         ...mapState ({
-            projects: state => state.projects.projects,
+            campaignData: state => state.campaigns.campaign_detail,
+            all_projects: state => state.projects.projects,
         })
     },
 
+    watch:{
+        campaignData(oldValue, newValue){
+            this.edit_campaign.title = this.campaignData.title
+            this.edit_campaign.details = this.campaignData.details
+            this.edit_campaign.description = this.campaignData.description
+            this.edit_campaign.projects = this.campaignData.projects
+            this.edit_campaign.image = this.campaignData.image
+            this.show_image = this.host + this.campaignData.image
+        }
+    },
+
     mounted() {
+        this.$store.dispatch('campaigns/get_Campaign_by_slug',this.slug)
         this.$store.dispatch('projects/get_projects')
     },
 
     methods: {
         submit() {
-            console.log(this.campaign)
-            this.$store.dispatch('campaigns/post_campaigns', this.campaign).then(response => {
+            this.$store.dispatch('campaigns/post_campaigns', this.edit_campaign).then(response => {
                 console.log(response.data)    
                 if(response.data.code == 200) { 
                     this.$toast.add({severity: 'success', summary: 'Success!', detail: response.data.response, closable: false, life: 3000})
-                    this.campaign.title= ""
-                    this.campaign.details = ""
-                    this.campaign.projects = null
-                    this.campaign.image = null
-                    this.campaign.description=""
-                    
                 }
                 else {
                     this.$toast.add({severity: 'error', summary: 'Error!', detail: response.data.response, closable: false, life: 3000})
@@ -166,14 +176,17 @@ export default {
             })
         },
 
-        uploadImage(e){
+        uplaodImage(e){
             const image = e.target.files[0];
             const reader = new FileReader();
             reader.readAsDataURL(image);
             reader.onload = e =>{
-                this.campaign.image = e.target.result;
+                this.edit_campaign.image = e.target.result;
+                this.show_image = e.target.result;
             };
         }
-    }
+    },
+
+    
 }
 </script>

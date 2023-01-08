@@ -10,13 +10,17 @@ import CreateProject from '../views/projects/create/index.vue'
 import ViewProject from '../views/projects/view/index.vue'
 import editProject from '../views/projects/edit/[id].vue'
 
-import CreateCampaigns from '../views/campaigns/create/index.vue'
-import ViewCampaigns from '../views/campaigns/view/index.vue'
-import editCampaigns from '../views/campaigns/edit/[id].vue'
-
 import CreateGallery from '../views/gallery/create/index.vue'
 import ViewGallery from '../views/gallery/view/index.vue'
 import editGallery from '../views/gallery/Edit/[id].vue'
+
+import CreateResearch from '../views/researchPublications/create/index.vue'
+import ViewResearch from '../views/researchPublications/view/index.vue'
+import EditResearch from '../views/researchPublications/Edit/[id].vue'
+
+import CreateBanner from '../views/Banner/create/index.vue'
+import ViewBanner from '../views/Banner/view/index.vue'
+import EditBanner from '../views/Banner/Edit/[id].vue'
 
 import ViewContact from '../views/contact/index.vue'
 
@@ -97,29 +101,29 @@ const routes = [
         }
     },
 
-    // Campaigns
+    // Banner
     {
-        path: '/campaigns/create',
-        name: 'CreateCampaigns',
-        component: CreateCampaigns,
+        path: '/banner/create',
+        name: 'CreateBanner',
+        component: CreateBanner,
         meta: {
             login_required: true,
             hideSidebar: false
         }
     },
     {
-        path: '/campaigns/view',
-        name: 'ViewCampaigns',
-        component: ViewCampaigns,
+        path: '/banner/view',
+        name: 'ViewBanner',
+        component: ViewBanner,
         meta: {
             login_required: true,
             hideSidebar: false
         }
     },
     {
-        path: '/campaigns/edit/:id',
-        name: 'editCampaigns',
-        component: editCampaigns,
+        path: '/banner/edit/:id',
+        name: 'EditBanner',
+        component: EditBanner,
         meta: {
             login_required: true,
             hideSidebar: false
@@ -155,7 +159,36 @@ const routes = [
         }
     },
 
-    // Conact
+    // Research & Publications
+    {
+        path: '/research/create',
+        name: 'CreateResearch',
+        component: CreateResearch,
+        meta: {
+            login_required: true,
+            hideSidebar: false
+        }
+    },
+    {
+        path: '/research/view',
+        name: 'ViewResearch',
+        component: ViewResearch,
+        meta: {
+            login_required: true,
+            hideSidebar: false
+        }
+    },
+    {
+        path: '/research/edit/:id',
+        name: 'EditResearch',
+        component: EditResearch,
+        meta: {
+            login_required: true,
+            hideSidebar: false
+        }
+    },
+
+    // Contact
     {
         path: '/contact/view',
         name: 'ViewContact',

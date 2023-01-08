@@ -9,25 +9,7 @@
 
                         <Column field="title" header="Title" :sortable="true" style="min-width:12rem"></Column>
 
-                        <Column header="Satarting Date" :sortable="true" style="min-width:8rem">
-                            <template #body="{data}">
-                                <p>{{getDate(data.date)}}</p>
-                            </template>
-                        </Column>
-
-                        <Column header="Ending Date" :sortable="true" style="min-width:8rem">
-                            <template #body="{data}">
-                                <p>{{getDate(data.date)}}</p>
-                            </template>
-                        </Column>
-
-                        <Column header="Organized By" :sortable="true" style="min-width:12rem">
-                            <template #body="{data}">
-                                <p>{{ data.project }}</p>
-                            </template>
-                        </Column>
-
-                        <Column header="Project" :sortable="true" style="min-width:12rem">
+                        <Column header="Description" :sortable="true" style="min-width:12rem">
                             <template #body="{data}">
                                 <p>{{ data.project }}</p>
                             </template>

@@ -15,6 +15,27 @@
                 </router-link>
             </div>
 
+            <!-- Banner -->
+            <div class="bg-black rounded-md my-3">
+                <p class="flex items-center px-6 py-5 font-semibold cursor-pointer" @click="showBanner"><i class="pi pi-calendar pr-5" style="font-size: 1.2rem"></i>Banner</p>
+
+                <div v-if="displayBanner" class="text-sm">
+                    <router-link to="/banner/create">
+                        <div class="flex items-center justify-start px-16 py-3 hover:bg-orange-300">
+                            <i class="pi pi-file-edit pr-1 sm:pr-2" style="font-size: 0.8rem"></i>
+                            <p @click="visibleSidebar = false">Create</p>
+                        </div> 
+                    </router-link>
+
+                    <router-link to="/banner/view">
+                        <div class="flex items-center justify-start px-16 py-3 hover:bg-orange-300">
+                            <i class="pi pi-eye pr-1 sm:pr-2" style="font-size: 0.8rem"></i>
+                            <p @click="visibleSidebar = false">View</p>
+                        </div>  
+                    </router-link>
+                </div>
+            </div>
+
             <!-- Area Of Work -->
             <div class="bg-black rounded-md my-3">
                 <p class="flex items-center px-6 py-5 font-semibold cursor-pointer" @click="showAreaOfWork"><i class="pi pi-heart pr-5" style="font-size: 1.2rem"></i>Area Of Work</p>
@@ -57,26 +78,26 @@
                 </div>
             </div>
 
-            <!-- Campaigns -->
-            <!-- <div class="bg-black rounded-md my-3">
-                <p class="flex items-center px-6 py-5 font-semibold cursor-pointer" @click="showCampaigns"><i class="pi pi-calendar pr-5" style="font-size: 1.2rem"></i>Campaigns</p>
+            <!-- Research And Publications -->
+            <div class="bg-black rounded-md my-3">
+                <p class="flex items-center px-6 py-5 font-semibold cursor-pointer" @click="showResearch"><i class="pi pi-images pr-5" style="font-size: 1.2rem"></i>Research</p>
 
-                <div v-if="displayCampaigns" class="text-sm">
-                    <router-link to="/campaigns/create">
+                <div v-if="displayResearch" class="text-sm">
+                    <router-link to="/research/create">
                         <div class="flex items-center justify-start px-16 py-3 hover:bg-orange-300">
                             <i class="pi pi-file-edit pr-1 sm:pr-2" style="font-size: 0.8rem"></i>
                             <p @click="visibleSidebar = false">Create</p>
-                        </div> 
+                        </div>
                     </router-link>
 
-                    <router-link to="/campaigns/view">
+                    <router-link to="/research/view">
                         <div class="flex items-center justify-start px-16 py-3 hover:bg-orange-300">
                             <i class="pi pi-eye pr-1 sm:pr-2" style="font-size: 0.8rem"></i>
                             <p @click="visibleSidebar = false">View</p>
                         </div>  
                     </router-link>
                 </div>
-            </div> -->
+            </div>
 
             <!-- Gallery -->
             <div class="bg-black rounded-md my-3">
@@ -122,9 +143,10 @@ export default {
             visibleSidebar: true,
             displayAreaOfWork: false,
             displayProjects: false,
-            displayCampaigns: false,
+            displayBanner: false,
             displayGallery: false,
             displayContact: false,
+            displayResearch: false,
         }
     },
 
@@ -135,11 +157,14 @@ export default {
         showProjects() {
             this.displayProjects = !this.displayProjects
         },
-        showCampaigns() {
-            this.displayCampaigns = !this.displayCampaigns
+        showBanner() {
+            this.displayBanner = !this.displayBanner
         },
         showGallery() {
             this.displayGallery = !this.displayGallery
+        },
+        showResearch() {
+            this.displayResearch = !this.displayResearch
         },
         showContact() {
             this.displayContact = !this.displayContact
