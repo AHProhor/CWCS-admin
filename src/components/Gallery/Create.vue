@@ -13,10 +13,10 @@
                             <p class="pb-1 text-gray-500">Projects</p>
                             <vSelect 
                                 class="text-gray-400"
-                                :options="campaigns"
+                                :options="projects"
                                 :reduce="(title) => title.id" 
                                 label="title" 
-                                v-model="gallery.campaign"
+                                v-model="gallery.project"
                                 placeholder="Select"
                             >
                             </vSelect>
@@ -60,9 +60,8 @@ export default {
         return {
             host: "https://cmsapi.smicee.com",
             gallery: {
-                title: "",
-                details: "",
-                campaign: null,
+                title: "no data",
+                project: null,
                 image: null,
             },
         }
@@ -70,12 +69,12 @@ export default {
 
     computed: {
         ...mapState ({
-            campaigns: state => state.campaigns.campaigns
+            projects: state => state.projects.projects
         })
     },
 
     mounted() {
-        this.$store.dispatch('campaigns/get_campaigns')
+        this.$store.dispatch('projects/get_projects')
     },
 
     methods: {
@@ -85,10 +84,8 @@ export default {
                 console.log(response.data)    
                 if(response.data.code == 200) { 
                     this.$toast.add({severity: 'success', summary: 'Success!', detail: response.data.response, closable: false, life: 3000})
-                    this.gallery.title= ""
-                    this.gallery.details = ""
                     this.gallery.image = null
-                    this.gallery.campaign = null
+                    this.gallery.project = null
                 }
                 else {
                     this.$toast.add({severity: 'error', summary: 'Error!', detail: response.data.response, closable: false, life: 3000})

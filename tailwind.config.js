@@ -15,6 +15,7 @@ module.exports = {
             'pink': '#e084b0',
             'sky': '#13c9ca',
             'red-700':'#b91c1c',
+            'red-500': '#ef4444',
             'gray-50': '#f9fafb',
             'gray-100': '#f3f4f6',
             'gray-200': '#e5e7eb',

@@ -38,7 +38,15 @@
                     </div>
 
                     <div class="pb-4">
-                        <p class="pb-1 text-gray-500">Banner Image</p>
+                        <p class="pb-1 text-gray-500">Web Banner Image</p>
+                        <div class="flex items-center">
+                            <img v-if="campaign.image" class="h-28 w-32" :src="campaign.image">
+                            <input :class="campaign.image ? 'ml-4' : 'ml-0'" type="file" accept="image/*" @change="uploadImage">
+                        </div>
+                    </div>
+
+                    <div class="pb-4">
+                        <p class="pb-1 text-gray-500">Mobile Banner Image</p>
                         <div class="flex items-center">
                             <img v-if="campaign.image" class="h-28 w-32" :src="campaign.image">
                             <input :class="campaign.image ? 'ml-4' : 'ml-0'" type="file" accept="image/*" @change="uploadImage">

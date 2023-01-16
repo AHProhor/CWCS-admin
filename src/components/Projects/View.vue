@@ -15,7 +15,13 @@
                         </template>
                     </Column>
 
-                    <Column field="areaofwork" header="Area Of Work" :sortable="true" style="min-width:13rem"></Column>
+                    <Column header="Area Of Work" :sortable="true" style="min-width:13rem">
+                        <template #body="{data}">
+                            <div v-if="data.areaofwork[0]">
+                                <p>{{ data.areaofwork[0].title }}</p>
+                            </div>
+                        </template>
+                    </Column>
 
                     <Column :exportable="false" header="Ongoing" style="max-width:10rem">
                         <template #body="{data}">
@@ -111,14 +117,12 @@ export default {
 
     computed: {
         ...mapState ({
-            projectsData: state => state.projects.projects,
-            aow: state => state.areaOfWork.areaOfWork,
+            projectsData: state => state.projects.projects
         })
     },
 
     mounted() {
-        this.$store.dispatch('projects/get_projects'),
-        this.$store.dispatch('areaOfWork/get_AOW')
+        this.$store.dispatch('projects/get_projects')
     },
 
     methods: {

@@ -80,7 +80,7 @@
 
             <!-- Research And Publications -->
             <div class="bg-black rounded-md my-3">
-                <p class="flex items-center px-6 py-5 font-semibold cursor-pointer" @click="showResearch"><i class="pi pi-images pr-5" style="font-size: 1.2rem"></i>Research</p>
+                <p class="flex items-center px-6 py-5 font-semibold cursor-pointer" @click="showResearch"><i class="pi pi-book pr-5" style="font-size: 1.2rem"></i>Research</p>
 
                 <div v-if="displayResearch" class="text-sm">
                     <router-link to="/research/create">

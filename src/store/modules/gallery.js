@@ -14,15 +14,19 @@ const mutations = {
     SET_GALLERY (state, items) {
         state.gallery = items
     },
+
     POST_GALLERY (state, items) {
         state.gallery = items
     },
+
     EDIT_GALLERY (state, items) {
         state.edited_story = items
     },
+
     DELETE_GALLERY (state, items) {
         state.message = items
     },
+    
     GET_GALLERY_DETAILS(state, items){
         state.gallery_details = items
     }

@@ -15,15 +15,19 @@ const mutations = {
     SET_PROJECTS (state, items) {
         state.projects = items
     },
+
     POST_PROJECTS (state, items) {
         state.new_project = items
     },
+
     EDIT_PROJECTS (state, items) {
         state.edited_projects = items
     },
+
     DELETE_PROJECTS (state, items) {
         state.message = items
     },
+
     GET_PROJECT_BY_SLUG(state, items){
         state.project_detail = items
     }
@@ -100,6 +104,7 @@ const actions = {
         })
         return response
     },
+    
     async get_project_by_slug ({ commit, dispatch }, payload) {
         let config=
 

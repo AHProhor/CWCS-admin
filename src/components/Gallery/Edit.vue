@@ -13,10 +13,10 @@
                             <p class="pb-1 text-gray-500">Project</p>
                             <vSelect 
                                 class="text-gray-400"
-                                :options="campaigns"
+                                :options="projects"
                                 :reduce="(title) => title.id" 
                                 label="title" 
-                                v-model="edit_gallery.campaign"
+                                v-model="edit_gallery.project"
                                 placeholder="Select"
                             >
                             </vSelect>
@@ -57,15 +57,14 @@ export default {
     },
 
     props: ["slug"],
+
     data() {
         return {
             host: "https://cmsapi.smicee.com",
             edit_gallery: {
-                title: "",
-                details: "",
-                campaign: null,
-                image: null,
-                slug:""
+                title: "no data",
+                project: null,
+                image: null
             },
             show_image:null
         }
@@ -74,21 +73,19 @@ export default {
     computed: {
         ...mapState ({
             gallery: state => state.gallery.gallery_details,
-            campaigns: state => state.campaigns.campaigns
+            projects: state => state.campaigns.campaigns
         })
     },
 
     mounted() {
         this.$store.dispatch('gallery/get_gallery_by_slug', this.slug)
-        this.$store.dispatch('campaigns/get_campaigns')
+        this.$store.dispatch('projects/get_projects')
     },
 
     watch:{
         gallery(oldValue, newValue){
-            this.edit_gallery.title = this.gallery.title
-            this.edit_gallery.details = this.gallery.details
-            this.edit_gallery.campaign = this.gallery.campaign
-            this.edit_gallery.slug = this.gallery.slug
+            this.edit_gallery.title = "no data"
+            this.edit_gallery.project = this.gallery.project
             this.edit_gallery.image = this.gallery.image
             this.show_image = this.host + this.gallery.image
         }
