@@ -4,18 +4,25 @@
         <div class="p-6">
             <div>
                 <div class="bg-white p-5 rounded-lg">
-                    <p class="text-left text-xl font-semibold pb-6">View Campaigns</p>
+                    <p class="text-left text-xl font-semibold pb-6">View Research</p>
                     <DataTable ref="dt" :value="campaignsData" dataKey="id" :paginator="true" :rows="5" paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,15]" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" responsiveLayout="scroll">
 
                         <Column field="title" header="Title" :sortable="true" style="min-width:12rem"></Column>
 
-                        <Column header="Description" :sortable="true" style="min-width:12rem">
+                        <Column header="PDF file" :sortable="true" style="min-width:12rem">
                             <template #body="{data}">
                                 <p>{{ data.project }}</p>
                             </template>
                         </Column>
 
-                        <Column :exportable="false" header="Image" :sortable="true" style="min-width:11rem">
+                        <Column header="Details" :sortable="true" style="max-width:20rem">
+                            <template #body="{data}">
+                                <p v-if="data.details.length < 300" class="text-justify pr-8">{{data.details}}</p>
+                                <p v-else class="text-justify pr-8">{{ data.details.substring(0, 300) + "..." }}</p>
+                            </template>
+                        </Column>
+
+                        <Column :exportable="false" header="Banner Image" :sortable="true" style="min-width:11rem">
                             <template #body="{data}">
                                 <img class="rounded-md w-36 h-28" :src="host + data.image" alt="">
                             </template>
@@ -25,7 +32,7 @@
                             <template #body="slotProps">
                                 <div class="flex">
                                     <div class="">
-                                        <router-link :to="{path:'/campaigns/edit/'+slotProps.data.slug}">
+                                        <router-link :to="{path:'/research/edit/'+slotProps.data.slug}">
                                             <Button icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"  />
                                         </router-link>
                                     </div>

@@ -15,7 +15,7 @@
                         </div>
 
                         <div class="pl-2 w-1/2">
-                            <p class="pb-1 text-gray-500">Project</p>
+                            <p class="pb-1 text-gray-500">Toggle</p>
                             <vSelect 
                                 class="text-gray-400"
                                 :options="all_projects"
@@ -33,21 +33,6 @@
                         <Textarea class="w-full" v-model="edit_campaign.details" :autoResize="true" rows="4" cols="30" />
                     </div>
 
-                    <!-- <div class="w-full pb-4 flex gap-4">
-                        <div class="flex flex-col field col-12 md:col-4 w-full">
-                            <label for="icon" class="text-gray-500">Starting Date</label>
-                            <Calendar class="dropdown-height" id="icon" v-model="startingDate" :showIcon="true" />
-                        </div>
-                        <div class="flex flex-col field col-12 md:col-4 w-full">
-                            <label for="icon" class="text-gray-500">Finishing Date</label>
-                            <Calendar class="dropdown-height" id="icon" v-model="finishingDate" :showIcon="true" />
-                        </div>
-                        <div class="felx felx-col w-full">
-                            <p class="text-gray-500">Organizer</p>
-                            <InputText type="text" class="w-full dropdown-height"/>
-                        </div>
-                    </div> -->
-
                     <div class="pb-4">
                         <p class="pb-1 text-gray-500">Image</p>
                         <div class="flex items-center">
@@ -55,15 +40,6 @@
                             <input class="ml-4" type="file" accept="image/*" @change="uplaodImage">
                         </div>
                     </div>
-
-                    <!-- <div class="pb-4">
-                        <p class="pb-1 text-gray-500">Details</p>
-                        <ckeditor
-                            :editor="editor"
-                            v-model="edit_campaign.description"
-                            :config="editorConfig"
-                        ></ckeditor>
-                    </div> -->
 
                     <div class="flex justify-center py-10">
                         <button @click="submit" class="submit-button">Submit</button>

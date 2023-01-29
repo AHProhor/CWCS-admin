@@ -4,49 +4,37 @@
         <div class="p-6">
             <div class="bg-white text-left p-6 rounded-lg shadow-md 2xl:px-52">
                 <div class="pb-6">
-                    <p class="text-xl font font-semibold pb-1">Create Banner</p>
+                    <p class="text-xl font font-semibold pb-1">Create Research</p>
                 </div>
 
-                <div>
-                    <div class="w-full pb-4 flex">
-                        <div class="w-1/2 pr-2">
+                <div class="">
+                    <div class="w-full pb-4 flex flex-col">
+                        <div class="pb-4">
                             <p class="pb-1 text-gray-500">Title</p>
                             <InputText type="text" class="w-full dropdown-height" v-model="campaign.title"/>
                         </div>
 
-                        <div class="pl-2 w-1/2">
-                            <p class="pb-1 text-gray-500">Toggle</p>
-                            <vSelect 
-                                class="text-gray-400"
-                                :options="projects"
-                                :reduce="(title) => title.id" 
-                                label="title" 
-                                v-model="campaign.projects"
-                                placeholder="Select"
-                            >
-                            </vSelect>
+                        <div class="pb-4">
+                            <p class="pb-1 text-gray-500">Short Details</p>
+                            <Textarea class="w-full" v-model="campaign.details" :autoResize="true" rows="4" cols="30" />
                         </div>
-                    </div>
 
-                    <div class="pb-4">
-                        <p class="pb-1 text-gray-500">Description</p>
-                        <ckeditor
-                            :editor="editor"
-                            v-model="campaign.description"
-                            :config="editorConfig"
-                        ></ckeditor>
-                    </div>
-
-                    <div class="pb-4">
-                        <p class="pb-1 text-gray-500">Banner Image</p>
-                        <div class="flex items-center">
-                            <img v-if="campaign.image" class="h-28 w-32" :src="campaign.image">
-                            <input :class="campaign.image ? 'ml-4' : 'ml-0'" type="file" accept="image/*" @change="uploadImage">
+                        <div class="pb-4">
+                            <p class="pb-1 text-gray-500">Reseach PDF File</p>
+                            <input type="file" accept="application/pdf,application/vnd.ms-excel" class="fileinput" @change="onChange">
                         </div>
-                    </div>
+
+                        <div class="pb-4">
+                            <p class="pb-1 text-gray-500">Banner Image</p>
+                            <div class="flex items-center">
+                                <img v-if="campaign.image" class="h-28 w-32" :src="campaign.image">
+                                <input :class="campaign.image ? 'ml-4' : 'ml-0'" type="file" accept="image/*" @change="uploadImage">
+                            </div>
+                        </div>
                     
-                    <div class="flex justify-center py-10">
-                        <button @click="submit" class="submit-button">Submit</button>
+                        <div class="flex justify-center py-10">
+                            <button @click="submit" class="submit-button">Submit</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -153,7 +141,15 @@ export default {
             reader.onload = e =>{
                 this.campaign.image = e.target.result;
             };
-        }
+        },
+        async onChange(e) {
+            let file = e.target.files[0];
+            let formData = new FormData();
+            formData.append('pdf', file);
+
+            await axios.post(`/materials/upload/${this.material.SKU}`, formData)
+                .then( res => console.log(res.data) )
+        },
     }
 }
 </script>

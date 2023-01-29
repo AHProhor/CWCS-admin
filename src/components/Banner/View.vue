@@ -4,7 +4,7 @@
         <div class="p-6">
             <div>
                 <div class="bg-white p-5 rounded-lg">
-                    <p class="text-left text-xl font-semibold pb-6">View Campaigns</p>
+                    <p class="text-left text-xl font-semibold pb-6">View Banner</p>
                     <DataTable ref="dt" :value="campaignsData" dataKey="id" :paginator="true" :rows="5" paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,15]" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" responsiveLayout="scroll">
 
                         <Column field="title" header="Title" :sortable="true" style="min-width:12rem"></Column>
@@ -25,7 +25,7 @@
                             <template #body="slotProps">
                                 <div class="flex">
                                     <div class="">
-                                        <router-link :to="{path:'/campaigns/edit/'+slotProps.data.slug}">
+                                        <router-link :to="{path:'/banner/edit/'+slotProps.data.slug}">
                                             <Button icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"  />
                                         </router-link>
                                     </div>

@@ -38,6 +38,10 @@ export default {
     min-height: calc(100vh - 136px);
 }
 
+.ck-editor__editable {
+    min-height: 200px;
+}
+
 @media screen and (min-width: 1536px) {
     .container {
         max-width: 1320px !important;

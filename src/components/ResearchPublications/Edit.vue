@@ -4,27 +4,14 @@
         <div class="p-6">
             <div class="bg-white text-left p-6 rounded-lg shadow-md 2xl:px-52">
                 <div class="pb-6">
-                    <p class="text-xl font font-semibold pb-1">Create Campaign</p>
+                    <p class="text-xl font font-semibold pb-1">Edit Research</p>
                 </div>
 
                 <div>
                     <div class="w-full pb-4 flex">
-                        <div class="w-1/2 pr-2">
+                        <div class="w-full">
                             <p class="pb-1 text-gray-500">Title</p>
                             <InputText type="text" class="w-full dropdown-height" v-model="edit_campaign.title"/>
-                        </div>
-
-                        <div class="pl-2 w-1/2">
-                            <p class="pb-1 text-gray-500">Project</p>
-                            <vSelect 
-                                class="text-gray-400"
-                                :options="all_projects"
-                                :reduce="(title) => title.id" 
-                                label="title" 
-                                v-model="edit_campaign.projects"
-                                placeholder="Select"
-                            >
-                            </vSelect>
                         </div>
                     </div>
 
@@ -33,37 +20,18 @@
                         <Textarea class="w-full" v-model="edit_campaign.details" :autoResize="true" rows="4" cols="30" />
                     </div>
 
-                    <!-- <div class="w-full pb-4 flex gap-4">
-                        <div class="flex flex-col field col-12 md:col-4 w-full">
-                            <label for="icon" class="text-gray-500">Starting Date</label>
-                            <Calendar class="dropdown-height" id="icon" v-model="startingDate" :showIcon="true" />
-                        </div>
-                        <div class="flex flex-col field col-12 md:col-4 w-full">
-                            <label for="icon" class="text-gray-500">Finishing Date</label>
-                            <Calendar class="dropdown-height" id="icon" v-model="finishingDate" :showIcon="true" />
-                        </div>
-                        <div class="felx felx-col w-full">
-                            <p class="text-gray-500">Organizer</p>
-                            <InputText type="text" class="w-full dropdown-height"/>
-                        </div>
-                    </div> -->
+                    <div class="pb-4">
+                        <p class="pb-1 text-gray-500">Reseach PDF File</p>
+                        <input type="file" accept="application/pdf,application/vnd.ms-excel" class="fileinput" @change="onChange">
+                    </div>
 
                     <div class="pb-4">
-                        <p class="pb-1 text-gray-500">Image</p>
+                        <p class="pb-1 text-gray-500">Banner Image</p>
                         <div class="flex items-center">
                             <img class="h-28 w-28" :src="show_image">
                             <input class="ml-4" type="file" accept="image/*" @change="uplaodImage">
                         </div>
                     </div>
-
-                    <!-- <div class="pb-4">
-                        <p class="pb-1 text-gray-500">Details</p>
-                        <ckeditor
-                            :editor="editor"
-                            v-model="edit_campaign.description"
-                            :config="editorConfig"
-                        ></ckeditor>
-                    </div> -->
 
                     <div class="flex justify-center py-10">
                         <button @click="submit" class="submit-button">Submit</button>
@@ -82,8 +50,6 @@ import vSelect from 'vue-select';
 import 'vue-select/dist/vue-select.css';
 import Toast from 'primevue/toast';
 import Calendar from 'primevue/calendar';
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-
 export default {
     components: {
         InputText,
@@ -91,7 +57,6 @@ export default {
         vSelect,
         Toast,
         Calendar,
-        ClassicEditor
     },
 
     props:["slug"],
@@ -109,34 +74,6 @@ export default {
                 image: null,
             },
             show_image:null,
-
-            editor: ClassicEditor,
-            editorData: "<p>What's on your mind ?</p>",
-            editorConfig: {
-                fillEmptyBlocks: false,
-                basicEntities: false,
-                entities: false,
-                entities_greek: false,
-                entities_latin: false,
-                entities_additional: "",
-                language: "fr",
-                wordCount: {
-                container: document.getElementById("wordcount")
-                },
-                ckfinder: {
-                // Upload the images to the server using the CKFinder QuickUpload command.
-                uploadUrl:
-                    "https://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json",
-
-                // Define the CKFinder configuration (if necessary).
-                options: {
-                    resourceType: "Images"
-                }
-                },
-                mediaEmbed: {
-                previewsInData: true
-                }
-            }
         }
     },
 

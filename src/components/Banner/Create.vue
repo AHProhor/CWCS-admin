@@ -29,12 +29,8 @@
                     </div>
 
                     <div class="pb-4">
-                        <p class="pb-1 text-gray-500">Description</p>
-                        <ckeditor
-                            :editor="editor"
-                            v-model="campaign.description"
-                            :config="editorConfig"
-                        ></ckeditor>
+                        <p class="pb-1 text-gray-500">Details</p>
+                        <Textarea class="w-full" v-model="projects.details" :autoResize="true" rows="4" cols="30"/>
                     </div>
 
                     <div class="pb-4">
@@ -45,14 +41,6 @@
                         </div>
                     </div>
 
-                    <div class="pb-4">
-                        <p class="pb-1 text-gray-500">Mobile Banner Image</p>
-                        <div class="flex items-center">
-                            <img v-if="campaign.image" class="h-28 w-32" :src="campaign.image">
-                            <input :class="campaign.image ? 'ml-4' : 'ml-0'" type="file" accept="image/*" @change="uploadImage">
-                        </div>
-                    </div>
-                    
                     <div class="flex justify-center py-10">
                         <button @click="submit" class="submit-button">Submit</button>
                     </div>
@@ -70,7 +58,6 @@ import vSelect from 'vue-select';
 import 'vue-select/dist/vue-select.css';
 import Toast from 'primevue/toast';
 import Calendar from 'primevue/calendar';
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 export default {
     components: {
@@ -79,7 +66,6 @@ export default {
         vSelect,
         Toast,
         Calendar,
-        ClassicEditor
     },
 
     data() {
@@ -94,33 +80,6 @@ export default {
                 projects:null,
                 image: null,
             },
-            editor: ClassicEditor,
-            editorData: "<p>What's on your mind ?</p>",
-            editorConfig: {
-                fillEmptyBlocks: false,
-                basicEntities: false,
-                entities: false,
-                entities_greek: false,
-                entities_latin: false,
-                entities_additional: "",
-                language: "fr",
-                wordCount: {
-                container: document.getElementById("wordcount")
-                },
-                ckfinder: {
-                // Upload the images to the server using the CKFinder QuickUpload command.
-                uploadUrl:
-                    "https://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json",
-
-                // Define the CKFinder configuration (if necessary).
-                options: {
-                    resourceType: "Images"
-                }
-                },
-                mediaEmbed: {
-                previewsInData: true
-                }
-            }
         }
     },
 

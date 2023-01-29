@@ -1,7 +1,7 @@
 <template>
     <div class="w-full">
         <Header />
-        <ViewGallery />
+        <ViewResearch />
         <Footer />
     </div>
 </template>

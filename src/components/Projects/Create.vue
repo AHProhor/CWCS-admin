@@ -43,8 +43,12 @@
                     </div>
 
                     <div class="pb-4">
-                        <p class="pb-1 text-gray-500">Details</p>
-                        <Textarea class="w-full" v-model="project.details" :autoResize="true" rows="4" cols="30"/>
+                        <p class="pb-1 text-gray-500">Description</p>
+                        <ckeditor
+                            :editor="editor"
+                            v-model="projectsData.description"
+                            :config="editorConfig"
+                        ></ckeditor>
                     </div>
 
                     <div class="pb-4">
@@ -72,6 +76,8 @@ import Toast from 'primevue/toast';
 import vSelect from 'vue-select';
 import 'vue-select/dist/vue-select.css';
 import ToggleButton from 'primevue/togglebutton';
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
 
 export default {
     components: {
@@ -80,6 +86,7 @@ export default {
         Toast,
         vSelect,
         ToggleButton,
+        ClassicEditor
     },
 
     data() {
@@ -101,7 +108,34 @@ export default {
                     value: 0,
                     name: 'No'
                 }
-            ]
+            ],
+            editor: ClassicEditor,
+            editorData: "<p>What's on your mind ?</p>",
+            editorConfig: {
+                fillEmptyBlocks: false,
+                basicEntities: false,
+                entities: false,
+                entities_greek: false,
+                entities_latin: false,
+                entities_additional: "",
+                language: "fr",
+                wordCount: {
+                container: document.getElementById("wordcount")
+                },
+                ckfinder: {
+                // Upload the images to the server using the CKFinder QuickUpload command.
+                uploadUrl:
+                    "https://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json",
+
+                // Define the CKFinder configuration (if necessary).
+                options: {
+                    resourceType: "Images"
+                }
+                },
+                mediaEmbed: {
+                previewsInData: true
+                }
+            }
         }
     },
 
