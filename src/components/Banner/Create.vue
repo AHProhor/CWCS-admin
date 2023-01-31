@@ -56,9 +56,8 @@
                             </div>
                         </div>
                         <!-- Company Experience Data -->
-                        <p class="text-lg pb-2">Basic Data Section</p>
+                        <p class="text-lg pt-4 pb-2">Company Overview</p>
                         <div class="w-full pb-4">
-                            <p class="pb-1 text-gray-500">Company Overview</p>
                             <div class="flex flex-col">
                                 <div class="flex items-center gap-6">
                                     <p class="font-semibold">1</p>

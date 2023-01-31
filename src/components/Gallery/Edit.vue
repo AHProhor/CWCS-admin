@@ -30,7 +30,6 @@
                             <input class="ml-4" type="file" accept="image/*" @change="uploadImage">
                         </div>
                     </div>
-                    <p>{{ show_image }}</p>
                     
                     <div class="flex items-start py-8">
                         <button @click="submit" class="submit-button">Submit</button>
@@ -61,7 +60,7 @@ export default {
 
     data() {
         return {
-            host: "https://cmsapi.smicee.com",
+            host: "https://cwcsapi.smicee.com",
             edit_gallery: {
                 project: null,
                 image: null

@@ -58,7 +58,7 @@
                         </div>
 
                         <div class="w-full pb-4">
-                            <p class="pb-1 text-gray-500">Company Overview</p>
+                            <p class="pb-2 text-lg pt-2">Company Overview</p>
                             <div class="flex flex-col">
                                 <div class="flex items-center gap-6" v-if="homeDetails.experience_data">
                                     <p class="font-semibold">1</p>
