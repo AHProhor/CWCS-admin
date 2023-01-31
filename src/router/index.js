@@ -103,7 +103,7 @@ const routes = [
 
     // Banner
     {
-        path: '/banner/create',
+        path: '/home/create',
         name: 'CreateBanner',
         component: CreateBanner,
         meta: {
@@ -112,7 +112,7 @@ const routes = [
         }
     },
     {
-        path: '/banner/view',
+        path: '/home/view',
         name: 'ViewBanner',
         component: ViewBanner,
         meta: {
@@ -121,7 +121,7 @@ const routes = [
         }
     },
     {
-        path: '/banner/edit/:id',
+        path: '/home/edit/:id',
         name: 'EditBanner',
         component: EditBanner,
         meta: {

@@ -30,11 +30,12 @@ module.exports = {
             'green-300': '#81C784',
             'green-500': '#4CAF50',
             'green-800': '#2E7D32',
-            'red-500': '#ef4444',
+            'red-500': '#d32f2f',
             'blue-500': '#3b82f6',
             'white': '#FFFFFF',
             // 'black': '#000000',
             'black': '#790045',
+            'button':'#2196f3'
         }
     },
     plugins: [],

@@ -46,7 +46,7 @@
                         <p class="pb-1 text-gray-500">Description</p>
                         <ckeditor
                             :editor="editor"
-                            v-model="projectsData.description"
+                            v-model="project.details"
                             :config="editorConfig"
                         ></ckeditor>
                     </div>
@@ -91,7 +91,7 @@ export default {
 
     data() {
         return {
-            host: "https://api.foringerdol.com",
+            host: "https://cwcsapi.smicee.com",
             project: {
                 title: "",
                 details: "",
@@ -142,12 +142,10 @@ export default {
     computed: {
         ...mapState ({
             aow: state => state.areaOfWork.areaOfWork,
-            projectsData: state => state.projects.projects
         })
     },
 
     mounted() {
-        this.$store.dispatch('projects/get_projects'),
         this.$store.dispatch('areaOfWork/get_AOW')
     },
 

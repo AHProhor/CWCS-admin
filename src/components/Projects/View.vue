@@ -10,8 +10,8 @@
 
                     <Column header="Details" :sortable="true" style="max-width:20rem">
                         <template #body="{data}">
-                            <p v-if="data.details.length < 300" class="text-justify pr-8">{{data.details}}</p>
-                            <p v-else class="text-justify pr-8">{{ data.details.substring(0, 300) + "..." }}</p>
+                            <p v-if="data.details.length < 300" class="text-justify pr-8" v-html="data.details"></p>
+                            <p v-else class="text-justify pr-8" v-html="data.details.substring(0, 300)"></p>
                         </template>
                     </Column>
 
@@ -97,7 +97,7 @@ export default {
 
     data() {
         return {
-            host: "https://cmsapi.smicee.com",
+            host: "https://cwcsapi.smicee.com",
             projectDialog: false,
             deleteProjectDialog: false,
             submitted: false,
@@ -146,6 +146,7 @@ export default {
             console.log(project)
             // this.submitted = true;
         },
+
         saveProject (project) {
             console.log('update payload -->', project)
             this.$store.dispatch("projects/edit_Projects", project).then(response => {
@@ -159,15 +160,18 @@ export default {
                 }
             })
         },
+        
         hideDialog() {
             this.projectDialog = false;
             this.submitted = false;
         },
+
         confirmDeleteProject (project) {
             this.temp_project = project;
             console.log(this.temp_project)
             this.deleteProjectDialog = true;
         },
+
         deleteProject (projectSlug) { 
             // console.log('project slug -->', projectSlug)
             this.$store.dispatch("projects/delete_projects", projectSlug).then(response => {

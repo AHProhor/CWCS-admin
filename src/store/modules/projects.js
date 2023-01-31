@@ -70,13 +70,13 @@ const actions = {
                 headers:  { 'Authorization': 'Bearer ' + localStorage.getItem('access_token') }   
                  
             }
-
+            console.log(payload)
         let response = await axios.patch(FAPI.edit_projects + payload.slug, 
             {
                 title: payload.project.title,
                 details: payload.project.details,
                 image: payload.project.image,
-                areaofwork: [payload.project.areaofwork],
+                areaofwork: [payload.project.areaofwork.id],
                 featured: payload.project.featured,
             }
             ,config).then(result => {

@@ -61,12 +61,10 @@ const actions = {
                 headers:  { 'Authorization': 'Bearer ' + localStorage.getItem('access_token') }    
             }
 
-        let response = await axios.patch(FAPI.edit_gallery + payload.slug, 
+        let response = await axios.patch(FAPI.edit_gallery + payload.id, 
             {
-                title: payload.title,
-                details: payload.details,
-                image: payload.image,
-                campaign: payload.campaign
+                image: payload.gallery.image,
+                project: payload.gallery.project
             }
             ,config).then(result => {
             let items = result.data.data
@@ -83,7 +81,7 @@ const actions = {
                 headers:  { 'Authorization': 'Bearer ' + localStorage.getItem('access_token') }    
             }
 
-        let response = await axios.delete(FAPI.delete_gallery_data + payload, config).then(result => {
+        let response = await axios.delete(FAPI.delete_gallery + payload, config).then(result => {
             let items = result.data
             commit('DELETE_GALLERY', items)
             dispatch('get_gallery')

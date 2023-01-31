@@ -27,7 +27,7 @@
                                 <div class="flex">
                                     <div class="">
                                         <router-link :to="{path:'/area-of-work/edit/'+slotProps.data.slug}">
-                                            <Button icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" @click="editAOW(slotProps.data)" />
+                                            <Button icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"/>
                                         </router-link>
                                     </div>
                                     <div class="ml-2">
@@ -80,7 +80,7 @@ export default {
 
     data() {
         return {
-            host: "https://cmsapi.smicee.com",
+            host: "https://cwcsapi.smicee.com",
             AOW: {},
             AOWDialog: false,
             deleteAOWDialog: false,
@@ -118,15 +118,6 @@ export default {
             };
         },
 
-        editAOW (AOW) {
-            // this.temp_AOW_edit.slug = AOW.slug;
-            // this.temp_AOW_edit.title = AOW.title;
-            // this.temp_AOW_edit.details = AOW.details;
-            // this.show_image = this.host + AOW.image;
-            // this.AOWDialog = true;
-            // this.submitted = true;
-            // this.$router.push({name:'AOWEdit', params:AOW.slug})
-        },
         saveAOW (AOW) {
             console.log('update payload -->', AOW)
             this.$store.dispatch("areaOfWork/edit_AOW", AOW).then(response => {
@@ -149,6 +140,7 @@ export default {
             this.deleteAOWDialog = true;
         },
         deleteAOW (slug) {
+            // console.log(slug)
             this.$store.dispatch("areaOfWork/delete_AOW", slug).then(response => {
                 // console.log(response.data)
                 if(response.data.code == 200) { 

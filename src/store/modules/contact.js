@@ -12,6 +12,7 @@ const mutations = {
     SET_CONTACT (state, items) {
         state.contact = items
     },
+
     DELETE_CONTACT (state, items) {
         state.message = items
     },
@@ -19,7 +20,7 @@ const mutations = {
 
 const actions = {
     get_contact({ commit }) {
-        console.log(localStorage.getItem('access_token') )
+        // console.log(localStorage.getItem('access_token') )
         let config=
             {
                 headers:  { 'Authorization': 'Bearer ' + localStorage.getItem('access_token') }    

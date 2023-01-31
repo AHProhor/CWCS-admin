@@ -3,8 +3,19 @@ var host = "https://cwcsapi.smicee.com";
 const FAPI = {
     'get_login': host + '/accounts/token/',
 
-    // about us api
+    // Dashboard
+    'get_item_count': host+'/home/count/',
 
+    // home 
+    'create_home': host+'/home/create/',
+    'get_home': host+'/home/list/',
+    'get_status': host+'/home/active/toggle/',
+    'delete_home': host+'/home/delete/',
+    'edit_home': host+'/home/update/',
+    'get_home_by_id': host+'/home/detail/',
+
+
+    // about us api
     'get_about_us': host+'/aboutus/list/',
     'post_about_us': host+'/aboutus/list/',
     'delete_about_us': host+'/aboutus/delete/',

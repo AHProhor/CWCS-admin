@@ -23,7 +23,7 @@
                     <div class="pb-4">
                         <p class="pb-1 text-gray-500">Image</p>
                         <div class="flex items-center">
-                            <img class="h-28 w-28" :src="show_image">
+                            <img class="h-28 w-28" :src="show_image"> 
                             <input :class="aow.image ? 'ml-4' : 'ml-0'" type="file" accept="image/*" @change="uplaodImage">
                         </div>
                     </div>
@@ -57,7 +57,7 @@ export default {
     props:["slug"],
     data() {
         return {
-            host: "https://cmsapi.smicee.com",
+            host: "https://cwcsapi.smicee.com",
             edit_aow: {
                 title: "",
                 details: "",
@@ -106,7 +106,6 @@ export default {
         aow(oldValue, newValue){
             this.edit_aow.title = this.aow.title
             this.edit_aow.details = this.aow.details
-            this.edit_aow.image = this.aow.image
             this.show_image = this.host + this.aow.image
         }
     }

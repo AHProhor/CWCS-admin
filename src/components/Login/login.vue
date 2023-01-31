@@ -6,7 +6,7 @@
 
                 <div class="back padding bg-white text-left lg:px-6 xl:px-10 text-sm flex flex-col justify-center rounded-lg shadow-md">
                     <div class="pb-6">
-                        <p class="text-xl font-semibold">Welcome to Foringer Dol Admin</p>
+                        <p class="text-xl font-semibold">Welcome to CWCS Admin</p>
                         <p class="text-sm text-gray-500">Sign in your account</p>
                     </div>
 

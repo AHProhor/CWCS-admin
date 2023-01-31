@@ -46,7 +46,7 @@
                         <p class="pb-1 text-gray-500">Description</p>
                         <ckeditor
                             :editor="editor"
-                            v-model="projectsData.description"
+                            v-model="edit_project.details"
                             :config="editorConfig"
                         ></ckeditor>
                     </div>
@@ -91,7 +91,7 @@ export default {
 
     data() {
         return {
-            host: "https://cmsapi.smicee.com",
+            host: "https://cwcsapi.smicee.com",
             edit_project: {
                 title: "",
                 details: "",
@@ -150,11 +150,12 @@ export default {
     mounted() {
         this.$store.dispatch('projects/get_project_by_slug',this.slug),
         this.$store.dispatch('areaOfWork/get_AOW')
-        // console.log(this.slug)
+        console.log(this.slug)
     },
 
     methods: {
         submit() {
+            // console.log(this.edit_project)  
             this.$store.dispatch('projects/edit_Projects', {project:this.edit_project, slug:this.slug}).then(response => {
                 console.log(response.data)    
                 if(response.data.code == 200) { 
@@ -189,7 +190,6 @@ export default {
             else{
                 this.edit_project.featured = 'Yes'
             }
-            this.edit_project.image = this.projectsData.image
             this.show_image = this.host + this.projectsData.image
         }
     }

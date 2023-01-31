@@ -54,7 +54,7 @@ export default {
 
     data() {
         return {
-            host: "https://cmsapi.smicee.com",
+            host: "https://cwcsapi.smicee.com",
             aow: {
                 title: "",
                 details: "",

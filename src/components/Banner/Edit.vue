@@ -4,43 +4,139 @@
         <div class="p-6">
             <div class="bg-white text-left p-6 rounded-lg shadow-md 2xl:px-52">
                 <div class="pb-6">
-                    <p class="text-xl font font-semibold pb-1">Create Campaign</p>
+                    <p class="text-xl font font-semibold pb-1">Edit Home</p>
                 </div>
 
                 <div>
-                    <div class="w-full pb-4 flex">
-                        <div class="w-1/2 pr-2">
+                    <!-- Top Banner -->
+                    <div>
+                        <p class="text-lg pb-2">Top Banner</p>
+                        <div class="w-full pb-4">
                             <p class="pb-1 text-gray-500">Title</p>
-                            <InputText type="text" class="w-full dropdown-height" v-model="edit_campaign.title"/>
+                            <InputText type="text" class="w-full dropdown-height" v-model="homeDetails.title"/>
                         </div>
 
-                        <div class="pl-2 w-1/2">
-                            <p class="pb-1 text-gray-500">Toggle</p>
-                            <vSelect 
-                                class="text-gray-400"
-                                :options="all_projects"
-                                :reduce="(title) => title.id" 
-                                label="title" 
-                                v-model="edit_campaign.projects"
-                                placeholder="Select"
-                            >
-                            </vSelect>
+                        <div class="pb-4">
+                            <p class="pb-1 text-gray-500">Short Details</p>
+                            <Textarea class="w-full" v-model="homeDetails.details" :autoResize="true" rows="4" cols="30" />
+                        </div>
+
+                        <div class="pb-4">
+                            <p class="pb-1 text-gray-500">Top Banner Image</p>
+                            <div class="flex items-center">
+                                <img v-if="show_top_banner_image" class="h-28 w-32" :src="show_top_banner_image">
+                                <input :class="show_top_banner_image ? 'ml-4' : 'ml-0'" type="file" accept="image/*" @change="uploadTopBannerImage">
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <!-- Mid Layer Banner -->
+                    <div class="pt-8">
+                        <p class="text-lg pb-2">Mid Layer Section</p>
+
+                        <div class="pb-4">
+                            <p class="pb-1 text-gray-500">Mid Banner Image</p>
+                            <div class="flex items-center">
+                                <img v-if="show_mid_banner_image" class="h-28 w-32" :src="show_mid_banner_image">
+                                <input :class="show_mid_banner_image ? 'ml-4' : 'ml-0'" type="file" accept="image/*" @change="uploadMidLayerImage">
+                            </div>
                         </div>
                     </div>
 
-                    <div class="pb-4">
-                        <p class="pb-1 text-gray-500">Short Details</p>
-                        <Textarea class="w-full" v-model="edit_campaign.details" :autoResize="true" rows="4" cols="30" />
-                    </div>
 
-                    <div class="pb-4">
-                        <p class="pb-1 text-gray-500">Image</p>
-                        <div class="flex items-center">
-                            <img class="h-28 w-28" :src="show_image">
-                            <input class="ml-4" type="file" accept="image/*" @change="uplaodImage">
+                    <!-- Bottom Layer Banner -->
+                    <div class="pt-8">
+                        <p class="text-lg pb-2">Bottom Layer Section</p>
+
+                        <div class="pb-4">
+                            <p class="pb-1 text-gray-500">Bottom Banner Image</p>
+                            <div class="flex items-center">
+                                <img v-if="show_mid_layer_image" class="h-28 w-32" :src="show_mid_layer_image">
+                                <input :class="show_mid_layer_image ? 'ml-4' : 'ml-0'" type="file" accept="image/*" @change="uploadBottomLayerImage">
+                            </div>
+                        </div>
+
+                        <div class="w-full pb-4">
+                            <p class="pb-1 text-gray-500">Company Overview</p>
+                            <div class="flex flex-col">
+                                <div class="flex items-center gap-6" v-if="homeDetails.experience_data">
+                                    <p class="font-semibold">1</p>
+                                    <div>
+                                        <p>Icon: </p>
+                                        <InputText type="text" class="w-full dropdown-height" v-model="homeDetails.experience_data.year.icon"/>
+                                    </div>
+                                    <div>
+                                        <p>Value: </p>
+                                        <InputText type="text" class="w-full dropdown-height" v-model="homeDetails.experience_data.year.value"/>
+                                    </div>
+                                    <div>
+                                        <p>Title: </p>
+                                        <InputText type="text" class="w-full dropdown-height" v-model="homeDetails.experience_data.year.title"/>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-6 pt-4" v-if="homeDetails.experience_data">
+                                    <p class="font-semibold">2</p>
+                                    <div>
+                                        <p>Icon: </p>
+                                        <InputText type="text" class="w-full dropdown-height" v-model="homeDetails.experience_data.concern.icon"/>
+                                    </div>
+                                    <div>
+                                        <p>Value: </p>
+                                        <InputText type="text" class="w-full dropdown-height" v-model="homeDetails.experience_data.concern.value"/>
+                                    </div>
+                                    <div>
+                                        <p>Title: </p>
+                                        <InputText type="text" class="w-full dropdown-height" v-model="homeDetails.experience_data.concern.title"/>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-6 pt-4" v-if="homeDetails.experience_data">
+                                    <p class="font-semibold">3</p>
+                                    <div>
+                                        <p>Icon: </p>
+                                        <InputText type="text" class="w-full dropdown-height" v-model="homeDetails.experience_data.client.icon"/>
+                                    </div>
+                                    <div>
+                                        <p>Value: </p>
+                                        <InputText type="text" class="w-full dropdown-height" v-model="homeDetails.experience_data.client.value"/>
+                                    </div>
+                                    <div>
+                                        <p>Title: </p>
+                                        <InputText type="text" class="w-full dropdown-height" v-model="homeDetails.experience_data.client.title"/>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-6 pt-4" v-if="homeDetails.experience_data">
+                                    <p class="font-semibold">4</p>
+                                    <div>
+                                        <p>Icon: </p>
+                                        <InputText type="text" class="w-full dropdown-height" v-model="homeDetails.experience_data.projects.icon"/>
+                                    </div>
+                                    <div>
+                                        <p>Value: </p>
+                                        <InputText type="text" class="w-full dropdown-height" v-model="homeDetails.experience_data.projects.value"/>
+                                    </div>
+                                    <div>
+                                        <p>Title: </p>
+                                        <InputText type="text" class="w-full dropdown-height" v-model="homeDetails.experience_data.projects.title"/>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
+                    <!-- Footer Image  -->
+                    <div class="pt-8">
+                        <p class="text-lg pb-2">Footer Section</p>
+                        <div class="pb-4">
+                            <p class="pb-1 text-gray-500">Footer Image</p>
+                            <div class="flex items-center">
+                                <img v-if="show_footer_image" class="h-28 w-32" :src="show_footer_image">
+                                <input :class="show_footer_image ? 'ml-4' : 'ml-0'" type="file" accept="image/*" @change="uploadFooterImage">
+                            </div>
+                        </div>
+                    </div>
+
+                    
                     <div class="flex justify-center py-10">
                         <button @click="submit" class="submit-button">Submit</button>
                     </div>
@@ -51,7 +147,6 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
 import InputText from 'primevue/inputtext';
 import Textarea from 'primevue/textarea';
 import vSelect from 'vue-select';
@@ -59,6 +154,7 @@ import 'vue-select/dist/vue-select.css';
 import Toast from 'primevue/toast';
 import Calendar from 'primevue/calendar';
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { mapState } from 'vuex';
 
 export default {
     components: {
@@ -70,21 +166,48 @@ export default {
         ClassicEditor
     },
 
-    props:["slug"],
+    props:['slug'],
 
     data() {
         return {
-            host: "https://cmsapi.smicee.com",
-            startingDate: null,
-            finishingDate: null,
-            edit_campaign: {
+            host: "https://cwcsapi.smicee.com",
+            homeDetails: {
+                id:null,
                 title: "",
                 details: "",
-                description:"",
-                projects:null,
-                image: null,
+                // image: null,
+                top_banner_image:null,
+                mid_banner_image:null,
+                mid_layer_image:null,
+                footer_image:null,
+                experience_data: {
+                    year: {
+                        icon: "",
+                        value: "",
+                        title: ""
+                    },
+                    concern: {
+                        icon: "",
+                        value: "",
+                        title: ""
+                    }, 
+                    client: {
+                        icon: "",
+                        value: "",
+                        title: ""
+                    }, 
+                    projects:{
+                        icon: "",
+                        value: "",
+                        title: ""
+                    }
+                },
             },
-            show_image:null,
+
+            show_top_banner_image:null,
+            show_mid_banner_image:null,
+            show_mid_layer_image:null,
+            show_footer_image:null,
 
             editor: ClassicEditor,
             editorData: "<p>What's on your mind ?</p>",
@@ -110,7 +233,7 @@ export default {
                 }
                 },
                 mediaEmbed: {
-                previewsInData: true
+                previewsInData: true 
                 }
             }
         }
@@ -118,33 +241,47 @@ export default {
 
     computed: {
         ...mapState ({
-            campaignData: state => state.campaigns.campaign_detail,
-            all_projects: state => state.projects.projects,
+            details: state => state.home.home_details,
         })
     },
 
-    watch:{
-        campaignData(oldValue, newValue){
-            this.edit_campaign.title = this.campaignData.title
-            this.edit_campaign.details = this.campaignData.details
-            this.edit_campaign.description = this.campaignData.description
-            this.edit_campaign.projects = this.campaignData.projects
-            this.edit_campaign.image = this.campaignData.image
-            this.show_image = this.host + this.campaignData.image
-        }
+    mounted() {
+        this.$store.dispatch('home/get_home_by_slug',this.slug)
     },
 
-    mounted() {
-        this.$store.dispatch('campaigns/get_Campaign_by_slug',this.slug)
-        this.$store.dispatch('projects/get_projects')
+    watch:{
+        details(oldValue, newValue){
+            this.homeDetails.id = this.details.id,
+
+            this.homeDetails.title = this.details.title,
+            this.homeDetails.details = this.details.details,
+            this.show_top_banner_image = this.host+this.details.top_banner_image,
+            this.show_mid_banner_image = this.host+this.details.mid_banner_image,
+            this.show_mid_layer_image = this.host+this.details.mid_layer_image,
+            this.show_footer_image = this.host+this.details.footer_image,
+            this.homeDetails.experience_data.year.icon = this.details.experience_data.year.icon
+            this.homeDetails.experience_data.year.value = this.details.experience_data.year.value
+            this.homeDetails.experience_data.year.title = this.details.experience_data.year.title
+            this.homeDetails.experience_data.concern.icon = this.details.experience_data.concern.icon
+            this.homeDetails.experience_data.concern.value = this.details.experience_data.concern.value
+            this.homeDetails.experience_data.concern.title = this.details.experience_data.concern.title
+            this.homeDetails.experience_data.client.icon = this.details.experience_data.client.icon
+            this.homeDetails.experience_data.client.value = this.details.experience_data.client.value
+            this.homeDetails.experience_data.client.title = this.details.experience_data.client.title
+            this.homeDetails.experience_data.projects.icon = this.details.experience_data.projects.icon
+            this.homeDetails.experience_data.projects.value = this.details.experience_data.projects.value
+            this.homeDetails.experience_data.projects.title = this.details.experience_data.projects.title
+        }
     },
 
     methods: {
         submit() {
-            this.$store.dispatch('campaigns/post_campaigns', this.edit_campaign).then(response => {
+            console.log(this.homeDetails)
+            this.$store.dispatch('home/update_home', this.homeDetails).then(response => {
                 console.log(response.data)    
                 if(response.data.code == 200) { 
                     this.$toast.add({severity: 'success', summary: 'Success!', detail: response.data.response, closable: false, life: 3000})
+                    setTimeout( ()=> this.$router.push('/home/view'),3000)
                 }
                 else {
                     this.$toast.add({severity: 'error', summary: 'Error!', detail: response.data.response, closable: false, life: 3000})
@@ -152,17 +289,45 @@ export default {
             })
         },
 
-        uplaodImage(e){
+        uploadTopBannerImage(e){
             const image = e.target.files[0];
             const reader = new FileReader();
             reader.readAsDataURL(image);
             reader.onload = e =>{
-                this.edit_campaign.image = e.target.result;
-                this.show_image = e.target.result;
+                this.homeDetails.top_banner_image = e.target.result;
+                this.show_top_banner_image = e.target.result;
             };
-        }
-    },
+        },
 
-    
+        uploadMidLayerImage(e){
+            const image = e.target.files[0];
+            const reader = new FileReader();
+            reader.readAsDataURL(image);
+            reader.onload = e =>{
+                this.homeDetails.mid_banner_image = e.target.result;
+                this.show_mid_banner_image = e.target.result;
+            };
+        },
+
+        uploadBottomLayerImage(e){
+            const image = e.target.files[0];
+            const reader = new FileReader();
+            reader.readAsDataURL(image);
+            reader.onload = e =>{
+                this.homeDetails.mid_layer_image = e.target.result;
+                this.show_mid_layer_image = e.target.result;
+            };
+        },
+
+        uploadFooterImage(e){
+            const image = e.target.files[0];
+            const reader = new FileReader();
+            reader.readAsDataURL(image);
+            reader.onload = e =>{
+                this.homeDetails.footer_image = e.target.result;
+                this.show_footer_image = e.target.result;
+            };
+        },
+    }
 }
 </script>

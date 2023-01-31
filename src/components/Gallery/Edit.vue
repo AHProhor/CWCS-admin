@@ -30,6 +30,7 @@
                             <input class="ml-4" type="file" accept="image/*" @change="uploadImage">
                         </div>
                     </div>
+                    <p>{{ show_image }}</p>
                     
                     <div class="flex items-start py-8">
                         <button @click="submit" class="submit-button">Submit</button>
@@ -62,7 +63,6 @@ export default {
         return {
             host: "https://cmsapi.smicee.com",
             edit_gallery: {
-                title: "no data",
                 project: null,
                 image: null
             },
@@ -73,7 +73,7 @@ export default {
     computed: {
         ...mapState ({
             gallery: state => state.gallery.gallery_details,
-            projects: state => state.campaigns.campaigns
+            projects: state => state.projects.projects
         })
     },
 
@@ -84,16 +84,14 @@ export default {
 
     watch:{
         gallery(oldValue, newValue){
-            this.edit_gallery.title = "no data"
             this.edit_gallery.project = this.gallery.project
-            this.edit_gallery.image = this.gallery.image
             this.show_image = this.host + this.gallery.image
         }
     },
 
     methods: {
         submit() {
-            this.$store.dispatch('gallery/edit_Gallery', this.edit_gallery).then(response => {
+            this.$store.dispatch('gallery/edit_Gallery', {gallery:this.edit_gallery, id:this.slug}).then(response => {
                 console.log(response.data)    
                 if(response.data.code == 200) { 
                     this.$toast.add({severity: 'success', summary: 'Success!', detail: response.data.response, closable: false, life: 3000})

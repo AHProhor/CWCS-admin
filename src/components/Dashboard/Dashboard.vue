@@ -14,7 +14,7 @@
                             </div>
                             <div class="pl-6 flex items-center">
                                 <div class="text-primary">
-                                    <p class="font-semibold text-2xl">{{ items.Event }}</p>
+                                    <p class="font-semibold text-2xl">{{ items.Areaofwork }}</p>
                                     <p>Area Of Work</p>
                                 </div>
                             </div>
@@ -29,7 +29,7 @@
                             </div>
                             <div class="pl-6 flex items-center">
                                 <div class="text-sky">
-                                    <p class="font-semibold text-2xl">{{ items.hotel }}</p>
+                                    <p class="font-semibold text-2xl">{{ items.projects }}</p>
                                     <p>Projects</p>
                                 </div>
                             </div>
@@ -44,7 +44,7 @@
                             </div>
                             <div class="pl-6 flex items-center">
                                 <div class="text-red-500">
-                                    <p class="font-semibold text-2xl">{{ items.hotel }}</p>
+                                    <p class="font-semibold text-2xl">{{ items.research }}</p>
                                     <p>Research</p>
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                             </div>
                             <div class="pl-6 flex items-center">
                                 <div class="text-black">
-                                    <p class="font-semibold text-2xl">{{ items.Blog }}</p>
+                                    <p class="font-semibold text-2xl">{{ items.gallery }}</p>
                                     <p>Gallery Image</p>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@
                             </div>
                             <div class="pl-6 flex items-center">
                                 <div class="text-black">
-                                    <p class="font-semibold text-2xl">{{ items.Blog }}</p>
+                                    <p class="font-semibold text-2xl">{{ items.home }}</p>
                                     <p>Banners</p>
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                             </div>
                             <div class="pl-6 flex items-center">
                                 <div class="text-gray-500">
-                                    <p class="font-semibold text-2xl">{{ items.Blog }}</p>
+                                    <p class="font-semibold text-2xl">{{ items.contact }}</p>
                                     <p>Messages</p>
                                 </div>
                             </div>

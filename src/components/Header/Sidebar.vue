@@ -15,19 +15,19 @@
                 </router-link>
             </div>
 
-            <!-- Banner -->
+            <!-- Home -->
             <div class="bg-black rounded-md my-3">
-                <p class="flex items-center px-6 py-5 font-semibold cursor-pointer" @click="showBanner"><i class="pi pi-calendar pr-5" style="font-size: 1.2rem"></i>Banner</p>
+                <p class="flex items-center px-6 py-5 font-semibold cursor-pointer" @click="showBanner"><i class="pi pi-calendar pr-5" style="font-size: 1.2rem"></i>Home</p>
 
                 <div v-if="displayBanner" class="text-sm">
-                    <router-link to="/banner/create">
+                    <router-link to="/home/create">
                         <div class="flex items-center justify-start px-16 py-3 hover:bg-orange-300">
                             <i class="pi pi-file-edit pr-1 sm:pr-2" style="font-size: 0.8rem"></i>
                             <p @click="visibleSidebar = false">Create</p>
                         </div> 
                     </router-link>
 
-                    <router-link to="/banner/view">
+                    <router-link to="/home/view">
                         <div class="flex items-center justify-start px-16 py-3 hover:bg-orange-300">
                             <i class="pi pi-eye pr-1 sm:pr-2" style="font-size: 0.8rem"></i>
                             <p @click="visibleSidebar = false">View</p>

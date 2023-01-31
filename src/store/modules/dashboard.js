@@ -2,7 +2,7 @@ import axios from 'axios';
 import FAPI from '../../../api-path/api-path';
 
 const state = {
-    items: []
+    items: {}
 }
 
 const getters = {}

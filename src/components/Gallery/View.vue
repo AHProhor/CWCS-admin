@@ -6,7 +6,11 @@
                     <p class="text-left text-xl font-semibold pb-6">View Gallery</p>
                     <DataTable ref="dt" :value="galleryData" dataKey="id" :paginator="true" :rows="5" paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,15]" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" responsiveLayout="scroll">
 
-                        <Column field="project" header="Project" :sortable="true" style="min-width:8rem"></Column>
+                        <Column header="Project" :sortable="true" style="min-width:8rem">
+                            <template #body="{data}">
+                                <p>{{ data.project.title }}</p>
+                            </template>
+                        </Column>
 
                         <Column :exportable="false" header="Image" :sortable="true" style="min-width:25rem">
                             <template #body="{data}">
@@ -18,7 +22,7 @@
                             <template #body="slotProps">
                                 <div class="flex">
                                     <div class="">
-                                        <router-link :to="{path:'/editGallery/edit/'+slotProps.data.slug}">
+                                        <router-link :to="{path:'/editGallery/edit/'+slotProps.data.id}">
                                             <Button icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"/>
                                         </router-link>
                                     </div>
@@ -38,7 +42,7 @@
                     </div>
                     <template #footer>
                         <Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteGallery = false"/>
-                        <Button label="Yes" icon="pi pi-check" class="p-button-text" @click="delete_Gallery(temp_gallery.slug)" />
+                        <Button label="Yes" icon="pi pi-check" class="p-button-text" @click="delete_Gallery(temp_gallery.id)" />
                     </template>
                 </Dialog>
         </div>
@@ -68,7 +72,7 @@ export default {
 
     data() {
         return {
-            host: "https://cmsapi.smicee.com",
+            host: "https://cwcsapi.smicee.com",
             galleryDialog: false,
             deleteGallery: false,
             submitted: false,
@@ -134,9 +138,10 @@ export default {
             this.temp_gallery = gallery;
             this.deleteGallery = true;
         },
-        delete_Gallery (slug) {
-            this.$store.dispatch("gallery/deleteGallery", slug).then(response => {
-                // console.log(response.data)
+        delete_Gallery (id) {
+            console.log(id)
+            this.$store.dispatch("gallery/deleteGallery", id).then(response => {
+                console.log(response.data)
                 if(response.data.code == 200) { 
                     this.$toast.add({severity: 'success', summary: 'Success!', detail:response.data.response, closable: false, life: 3000})
                     this.deleteGallery = false;

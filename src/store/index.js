@@ -6,6 +6,7 @@ import projects from'./modules/projects'
 import campaigns from './modules/campaigns'
 import gallery from './modules/gallery'
 import contact from './modules/contact'
+import home from './modules/home'
 
 export default createStore({
     modules: {
@@ -16,6 +17,7 @@ export default createStore({
         campaigns,
         gallery,
         contact,
+        home
     },
 
     state () {
