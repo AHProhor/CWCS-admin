@@ -67,7 +67,7 @@
                     </router-link>
 
                     <!-- Banner -->
-                    <router-link to="/gallery/view">
+                    <router-link to="/home/view">
                         <div class="bg-white rounded-lg shadow-lg p-6 flex items-center">
                             <div class="bg-black rounded-full w-12 h-12">
                                 <p class="flex justify-center items-center h-full text-white"><i class="pi pi-copy" style="font-size: 1.6rem"></i></p>

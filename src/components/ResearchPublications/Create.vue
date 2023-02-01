@@ -10,25 +10,25 @@
                 <div class="">
                     <div class="w-full pb-4 flex flex-col">
                         <div class="pb-4">
-                            <p class="pb-1 text-gray-500">Title</p>
-                            <InputText type="text" class="w-full dropdown-height" v-model="campaign.title"/>
+                            <p class="pb-1 text-gray-500">Author Name</p>
+                            <InputText type="text" class="w-full dropdown-height" v-model="research.author_name"/>
                         </div>
 
                         <div class="pb-4">
-                            <p class="pb-1 text-gray-500">Short Details</p>
-                            <Textarea class="w-full" v-model="campaign.details" :autoResize="true" rows="4" cols="30" />
+                            <p class="pb-1 text-gray-500">Title</p>
+                            <InputText type="text" class="w-full dropdown-height" v-model="research.paper_title"/>
                         </div>
 
                         <div class="pb-4">
                             <p class="pb-1 text-gray-500">Reseach PDF File</p>
-                            <input type="file" accept="application/pdf,application/vnd.ms-excel" class="fileinput" @change="onChange">
+                            <input type="file" accept="application/pdf" class="fileinput" @change="uploadPDF( $event )">
                         </div>
 
                         <div class="pb-4">
-                            <p class="pb-1 text-gray-500">Banner Image</p>
+                            <p class="pb-1 text-gray-500">Book Image</p>
                             <div class="flex items-center">
-                                <img v-if="campaign.image" class="h-28 w-32" :src="campaign.image">
-                                <input :class="campaign.image ? 'ml-4' : 'ml-0'" type="file" accept="image/*" @change="uploadImage">
+                                <img v-if="research.book_banner_image" class="h-28 w-32" :src="research.book_banner_image">
+                                <input :class="research.book_banner_image ? 'ml-4' : 'ml-0'" type="file" accept="image/*" @change="uploadImage">
                             </div>
                         </div>
                     
@@ -50,8 +50,6 @@ import vSelect from 'vue-select';
 import 'vue-select/dist/vue-select.css';
 import Toast from 'primevue/toast';
 import Calendar from 'primevue/calendar';
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-
 export default {
     components: {
         InputText,
@@ -59,73 +57,37 @@ export default {
         vSelect,
         Toast,
         Calendar,
-        ClassicEditor
     },
 
     data() {
         return {
             host: "https://cmsapi.smicee.com",
-            satrtingDate: null,
-            finishingDate: null,
-            campaign: {
-                title: "",
-                details: "",
-                description:"",
-                projects:null,
-                image: null,
-            },
-            editor: ClassicEditor,
-            editorData: "<p>What's on your mind ?</p>",
-            editorConfig: {
-                fillEmptyBlocks: false,
-                basicEntities: false,
-                entities: false,
-                entities_greek: false,
-                entities_latin: false,
-                entities_additional: "",
-                language: "fr",
-                wordCount: {
-                container: document.getElementById("wordcount")
-                },
-                ckfinder: {
-                // Upload the images to the server using the CKFinder QuickUpload command.
-                uploadUrl:
-                    "https://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json",
-
-                // Define the CKFinder configuration (if necessary).
-                options: {
-                    resourceType: "Images"
-                }
-                },
-                mediaEmbed: {
-                previewsInData: true
-                }
+            research: {
+                author_name: '',
+                paper_title: '',
+                pdf:'',
+                book_banner_image: null,
             }
         }
     },
 
     computed: {
         ...mapState ({
-            projects: state => state.projects.projects,
+            createResearch: state => state.research.createResearch,
         })
-    },
-
-    mounted() {
-        this.$store.dispatch('projects/get_projects')
     },
 
     methods: {
         submit() {
-            console.log(this.campaign)
-            this.$store.dispatch('campaigns/post_campaigns', this.campaign).then(response => {
+            console.log(this.research)
+            this.$store.dispatch('research/create_research', this.research).then(response => {
                 console.log(response.data)    
                 if(response.data.code == 200) { 
                     this.$toast.add({severity: 'success', summary: 'Success!', detail: response.data.response, closable: false, life: 3000})
-                    this.campaign.title= ""
-                    this.campaign.details = ""
-                    this.campaign.projects = null
-                    this.campaign.image = null
-                    this.campaign.description=""
+                    this.research.author_name= ""
+                    this.research.paper_title = ""
+                    this.research.pdf = null
+                    this.research.book_banner_image = null
                     
                 }
                 else {
@@ -139,16 +101,17 @@ export default {
             const reader = new FileReader();
             reader.readAsDataURL(image);
             reader.onload = e =>{
-                this.campaign.image = e.target.result;
+                this.research.book_banner_image = e.target.result;
             };
         },
-        async onChange(e) {
-            let file = e.target.files[0];
-            let formData = new FormData();
-            formData.append('pdf', file);
 
-            await axios.post(`/materials/upload/${this.material.SKU}`, formData)
-                .then( res => console.log(res.data) )
+        uploadPDF(e) {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = e =>{
+                this.research.pdf = e.target.result;
+            };
         },
     }
 }

@@ -8,27 +8,30 @@
                 </div>
 
                 <div>
-                    <div class="w-full pb-4 flex">
+                    <div class="w-full pb-6 flex">
                         <div class="w-full">
-                            <p class="pb-1 text-gray-500">Title</p>
-                            <InputText type="text" class="w-full dropdown-height" v-model="edit_campaign.title"/>
+                            <p class="pb-1 text-gray-500">Author Name</p>
+                            <InputText type="text" class="w-full dropdown-height" v-model="edit_research.author_name"/>
                         </div>
                     </div>
 
-                    <div class="pb-4">
-                        <p class="pb-1 text-gray-500">Short Details</p>
-                        <Textarea class="w-full" v-model="edit_campaign.details" :autoResize="true" rows="4" cols="30" />
+                    <div class="w-full pb-6 flex">
+                        <div class="w-full">
+                            <p class="pb-1 text-gray-500">Title</p>
+                            <InputText type="text" class="w-full dropdown-height" v-model="edit_research.paper_title"/>
+                        </div>
                     </div>
 
-                    <div class="pb-4">
+                    <div class="pb-6">
                         <p class="pb-1 text-gray-500">Reseach PDF File</p>
-                        <input type="file" accept="application/pdf,application/vnd.ms-excel" class="fileinput" @change="onChange">
+                        <p v-if="show_pdf" class="w-full pb-1">{{ show_pdf }}</p>
+                        <input type="file" accept="application/pdf" class="fileinput" @change="uploadPDF( $event )">
                     </div>
 
                     <div class="pb-4">
                         <p class="pb-1 text-gray-500">Banner Image</p>
                         <div class="flex items-center">
-                            <img class="h-28 w-28" :src="show_image">
+                            <img v-if="show_image" class="h-28 w-28" :src="show_image">
                             <input class="ml-4" type="file" accept="image/*" @change="uplaodImage">
                         </div>
                     </div>
@@ -63,49 +66,44 @@ export default {
 
     data() {
         return {
-            host: "https://cmsapi.smicee.com",
-            startingDate: null,
-            finishingDate: null,
-            edit_campaign: {
-                title: "",
-                details: "",
-                description:"",
-                projects:null,
-                image: null,
+            host: "https://cwcsapi.smicee.com",
+            edit_research: {
+                author_name: '',
+                paper_title: '',
+                pdf:null,
+                book_banner_image: null,
             },
             show_image:null,
+            show_pdf:null
         }
     },
 
     computed: {
         ...mapState ({
-            campaignData: state => state.campaigns.campaign_detail,
-            all_projects: state => state.projects.projects,
+            researchData: state => state.research.research_detail
         })
     },
 
     watch:{
-        campaignData(oldValue, newValue){
-            this.edit_campaign.title = this.campaignData.title
-            this.edit_campaign.details = this.campaignData.details
-            this.edit_campaign.description = this.campaignData.description
-            this.edit_campaign.projects = this.campaignData.projects
-            this.edit_campaign.image = this.campaignData.image
-            this.show_image = this.host + this.campaignData.image
+        researchData(oldValue, newValue){
+            this.edit_research.author_name = this.researchData.author_name
+            this.edit_research.paper_title = this.researchData.paper_title
+            this.show_pdf = this.host + this.researchData.pdf
+            this.show_image = this.host + this.researchData.book_banner_image
         }
     },
 
     mounted() {
-        this.$store.dispatch('campaigns/get_Campaign_by_slug',this.slug)
-        this.$store.dispatch('projects/get_projects')
+        this.$store.dispatch('research/get_research_by_id', this.slug)
     },
 
     methods: {
         submit() {
-            this.$store.dispatch('campaigns/post_campaigns', this.edit_campaign).then(response => {
+            this.$store.dispatch('research/edit_research', {research:this.edit_research, id:this.slug}).then(response => {
                 console.log(response.data)    
                 if(response.data.code == 200) { 
                     this.$toast.add({severity: 'success', summary: 'Success!', detail: response.data.response, closable: false, life: 3000})
+                    setTimeout( ()=> this.$router.push('/research/view'),3000)
                 }
                 else {
                     this.$toast.add({severity: 'error', summary: 'Error!', detail: response.data.response, closable: false, life: 3000})
@@ -118,8 +116,18 @@ export default {
             const reader = new FileReader();
             reader.readAsDataURL(image);
             reader.onload = e =>{
-                this.edit_campaign.image = e.target.result;
+                this.edit_research.book_banner_image = e.target.result;
                 this.show_image = e.target.result;
+            };
+        },
+
+        uploadPDF(e) {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = e =>{
+                this.research.pdf = e.target.result;
+                this.show_pdf = e.target.result;
             };
         }
     },

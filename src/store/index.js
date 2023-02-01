@@ -4,6 +4,7 @@ import dashboard from './modules/dashboard'
 import areaOfWork from './modules/areaOfWork'
 import projects from'./modules/projects'
 import campaigns from './modules/campaigns'
+import research from './modules/researchAndPublications'
 import gallery from './modules/gallery'
 import contact from './modules/contact'
 import home from './modules/home'
@@ -17,6 +18,7 @@ export default createStore({
         campaigns,
         gallery,
         contact,
+        research,
         home
     },
 

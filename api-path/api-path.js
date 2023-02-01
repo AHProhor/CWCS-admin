@@ -46,6 +46,14 @@ const FAPI = {
 
     'get_gallery_by_project': host+'/gallery/byProject/',
 
+    // Research and Publications
+    'get_research': host + '/publications/list/',
+    'post_research': host + '/publications/create/',
+    'edit_research': host+ '/publications/update/',
+    'delete_research': host+'/publications/delete/',
+    'get_research_by_id': host+'/publications/details/',
+    
+
     // contact api 
     'get_contact': host + '/contact/message/list/',
     'delete_contact': host+'/contact/delete/',
