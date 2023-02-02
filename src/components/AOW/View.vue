@@ -11,8 +11,8 @@
 
                         <Column header="Details" :sortable="true" style="max-width:35rem">
                             <template #body="{data}">
-                                <p v-if="data.details.length < 350" class="text-justify pr-8">{{data.details}}</p>
-                                <p v-else class="text-justify pr-8">{{ data.details.substring(0, 350) + "..." }}</p>
+                                <p v-if="data.details.length < 180" class="text-justify pr-8">{{data.details}}</p>
+                                <p v-else class="text-justify pr-8">{{ data.details.substring(0, 180) + "..." }}</p>
                             </template>
                         </Column>
 

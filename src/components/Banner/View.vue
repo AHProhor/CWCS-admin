@@ -11,25 +11,25 @@
 
                         <Column :exportable="false" header="Top Banner" :sortable="true" style="min-width:10rem">
                             <template #body="{data}">
-                                <img class="rounded-md w-52 h-28" :src="host + data.top_banner_image" alt="">
+                                <img class="rounded-md h-20 2xl:h-28" :src="host + data.top_banner_image" alt="">
                             </template>
                         </Column>
 
                         <Column :exportable="false" header="Mid Banner" :sortable="true" style="min-width:10rem">
                             <template #body="{data}">
-                                <img class="rounded-md w-52 h-28" :src="host + data.mid_banner_image" alt="">
+                                <img class="rounded-md h-20 2xl:h-28" :src="host + data.mid_banner_image" alt="">
                             </template>
                         </Column>
 
                         <Column :exportable="false" header="Bottom Banner" :sortable="true" style="min-width:10rem">
                             <template #body="{data}">
-                                <img class="rounded-md w-52 h-28" :src="host + data.mid_layer_image" alt="">
+                                <img class="rounded-md h-20 2xl:h-28" :src="host + data.mid_layer_image" alt="">
                             </template>
                         </Column>
 
                         <Column :exportable="false" header="Footer Banner" :sortable="true" style="min-width:10rem">
                             <template #body="{data}">
-                                <img class="rounded-md w-52 h-28" :src="host + data.footer_image" alt="">
+                                <img class="rounded-md h-20 2xl:h-28" :src="host + data.footer_image" alt="">
                             </template>
                         </Column>
 

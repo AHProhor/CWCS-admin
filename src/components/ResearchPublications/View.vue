@@ -7,29 +7,29 @@
                     <p class="text-left text-xl font-semibold pb-6">View Research & Publications</p>
                     <DataTable ref="dt" :value="researchData" dataKey="id" :paginator="true" :rows="5" paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,15]" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" responsiveLayout="scroll">
 
-                        <Column field="title" header="Title" :sortable="true" style="min-width:12rem">
+                        <Column field="title" header="Title" :sortable="true" style="min-width:10rem">
                             <template #body="{data}">
                                 <p>{{ data.paper_title }}</p>
                             </template>
                         </Column>
 
-                        <Column header="Author" :sortable="true" style="max-width:20rem">
+                        <Column header="Author" :sortable="true" style="max-width:10rem">
                             <template #body="{data}">
                                 <p class="text-justify pr-8">{{ data.author_name}}</p>
                             </template>
                         </Column>
 
-                        <Column header="PDF file" :sortable="true" style="min-width:12rem">
+                        <Column header="PDF file" :sortable="true" style="min-width:10rem">
                             <template #body="{data}">
                                 <p>{{host + data.pdf }}</p>
                             </template>
                         </Column>
 
-                        <Column :exportable="false" header="Book Image" :sortable="true" style="min-width:11rem">
+                        <!-- <Column :exportable="false" header="Book Image" :sortable="true" style="min-width:11rem">
                             <template #body="{data}">
                                 <img class="rounded-md w-36 h-28" :src="host + data.book_banner_image" alt="">
                             </template>
-                        </Column>
+                        </Column> -->
 
                         <Column header="Action" :exportable="false" style="min-width:7rem">
                             <template #body="slotProps">

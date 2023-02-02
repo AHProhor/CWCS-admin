@@ -6,16 +6,16 @@
                 <p class="text-left text-xl font-semibold pb-6">View Projects</p>
                 <DataTable ref="dt" :value="projectsData" dataKey="id" :paginator="true" :rows="5" paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,15]" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" responsiveLayout="scroll">
 
-                    <Column field="title" header="Title" :sortable="true" style="min-width:13rem"></Column>
+                    <Column field="title" header="Title" :sortable="true" style="min-width:10rem"></Column>
 
-                    <Column header="Details" :sortable="true" style="max-width:20rem">
+                    <Column header="Details" :sortable="true" style="max-width:35rem">
                         <template #body="{data}">
-                            <p v-if="data.details.length < 300" class="text-justify pr-8" v-html="data.details"></p>
-                            <p v-else class="text-justify pr-8" v-html="data.details.substring(0, 300)"></p>
+                            <p v-if="data.details.length < 180" class="text-left pr-8" v-html="data.details"></p>
+                            <p v-else class="text-left pr-8" v-html="data.details.substring(0, 180)"></p>
                         </template>
                     </Column>
 
-                    <Column header="Area Of Work" :sortable="true" style="min-width:13rem">
+                    <Column header="Area Of Work" :sortable="true" style="min-width:10rem">
                         <template #body="{data}">
                             <div v-if="data.areaofwork[0]">
                                 <p>{{ data.areaofwork[0].title }}</p>

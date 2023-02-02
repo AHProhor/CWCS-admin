@@ -1,21 +1,24 @@
 <template>
-    <div class="lg:h-screen fixed-height bg-background flex items-center">
+    <div class="h-screen bg-background flex items-center">
         <Toast :breakpoints="{'640px': {width: '80%', right: '0'}}" />
         <div class="w-full flex justify-center">
-            <div class="container mobile-width flex justify-center">
+            <div class="container flex justify-center">
 
-                <div class="back padding bg-white text-left lg:px-6 xl:px-10 text-sm flex flex-col justify-center rounded-lg shadow-md">
-                    <div class="pb-6">
+                <div class="bg-white text-left p-6 xl:p-10 text-sm flex flex-col justify-center rounded-lg shadow-md">
+                    <div class="w-full flex justify-center">
+                        <img class="h-28 w-20" src="../../assets/logo.png" alt="logo">
+                    </div>
+                    <div class="py-6">
                         <p class="text-xl font-semibold">Welcome to CWCS Admin</p>
                         <p class="text-sm text-gray-500">Sign in your account</p>
                     </div>
 
                     <Form class="w-full flex flex-col items-center" @submit="login" :validation-schema="schema">
 
-                        <div class="pb-3 w-full">
+                        <div class="pb-4 w-full">
                             <p class="pb-1 text-gray-600">Username</p>
                             <Field 
-                                class="w-full outline-none text-gray-700 border border-gray-300 rounded p-2" 
+                                class="w-full outline-none text-gray-700 border border-gray-300 rounded p-2 w-72 sm:w-96" 
                                 type="text" 
                                 placeholder="Enter phone number" 
                                 v-model="user.username"
@@ -24,14 +27,14 @@
                             <ErrorMessage class="text-red-500 text-left text-sm mt-1 ml-1" name="Username" />
                         </div> 
 
-                        <div class="pb-3 w-full">
+                        <div class="pb-4 w-full">
                             <p class="pb-1 text-gray-600">Password</p>
                             <div class="relative w-full">
                                 <div class="absolute inset-y-0 right-0 pr-6 flex items-center">
                                     <i class="absolute text-slate-400 flex justify-center cursor-pointer" :class="passwordToggleIcon" @click="togglePasswordVisibility" />
                                 </div>
                                 <Field 
-                                    class="w-full outline-none text-gray-700 border border-gray-300 rounded p-2" 
+                                    class="w-full outline-none text-gray-700 border border-gray-300 rounded p-2 w-72 sm:w-96" 
                                     :type="passwordFieldType"
                                     placeholder="Enter password" 
                                     v-model="user.password"
@@ -106,52 +109,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.back {
-    background-size: cover;
-    height: 55vh;
-    width: 30vw;
-}
 
-@media screen and (max-width: 1024px) {
-    .mobile-width {
-        @apply p-24;
-    }
-    .back {
-        height: 55vh;
-    }
-    .padding {
-        @apply p-10;
-    }
-}
-@media screen and (max-width: 768px) {
-    .mobile-width {
-        @apply p-20;
-    }
-    .back {
-        height: 50vh;
-    }
-}
-@media screen and (max-width: 640px) {
-    .mobile-width {
-        @apply p-6;
-    }
-    .back {
-        height: 50vh;
-    }
-}
-@media screen and (max-width: 450px) {
-    .mobile-width {
-        @apply p-0
-    }
-    .back {
-        height: 45vh;
-    }
-    .padding {
-        @apply p-6;
-    }
-    .fixed-height {
-        @apply h-screen;
-    }
-}
-</style>

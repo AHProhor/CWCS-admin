@@ -31,7 +31,8 @@ const routes = [
         component: Dashboard,
         meta: {
             login_required: true,
-            hideSidebar: false
+            hideSidebar: false,
+            isDashboardOpen: true
         }
     },
     {
@@ -50,7 +51,9 @@ const routes = [
         component: CreateAOW,
         meta: {
             login_required: true,
-            hideSidebar: false
+            hideSidebar: false,
+            isAOWOpen: true,
+            isAOWCreate: true
         }
     },
     {
@@ -59,7 +62,9 @@ const routes = [
         component: ViewAOW,
         meta: {
             login_required: true,
-            hideSidebar: false
+            hideSidebar: false,
+            isAOWOpen: true,
+            isAOWView: true
         }
     },
     {
@@ -68,7 +73,8 @@ const routes = [
         component: AOWEdit,
         meta: {
             login_required: true,
-            hideSidebar: false
+            hideSidebar: false,
+            isAOWOpen: true
         }
     },
 
@@ -79,7 +85,9 @@ const routes = [
         component: CreateProject,
         meta: {
             login_required: true,
-            hideSidebar: false
+            hideSidebar: false,
+            isProjectOpen: true,
+            isProjectCreate: true
         }
     },
     {
@@ -88,7 +96,9 @@ const routes = [
         component: ViewProject,
         meta: {
             login_required: true,
-            hideSidebar: false
+            hideSidebar: false,
+            isProjectOpen: true,
+            isProjectView: true
         }
     },
     {
@@ -97,7 +107,8 @@ const routes = [
         component: editProject,
         meta: {
             login_required: true,
-            hideSidebar: false
+            hideSidebar: false,
+            isProjectOpen: true
         }
     },
 
@@ -108,7 +119,9 @@ const routes = [
         component: CreateBanner,
         meta: {
             login_required: true,
-            hideSidebar: false
+            hideSidebar: false,
+            isHomeOpen: true,
+            isHomeCreate: true
         }
     },
     {
@@ -117,7 +130,9 @@ const routes = [
         component: ViewBanner,
         meta: {
             login_required: true,
-            hideSidebar: false
+            hideSidebar: false,
+            isHomeOpen: true,
+            isHomeView: true
         }
     },
     {
@@ -126,7 +141,8 @@ const routes = [
         component: EditBanner,
         meta: {
             login_required: true,
-            hideSidebar: false
+            hideSidebar: false,
+            isHomeOpen: true
         }
     },
 
@@ -137,7 +153,9 @@ const routes = [
         component: CreateGallery,
         meta: {
             login_required: true,
-            hideSidebar: false
+            hideSidebar: false,
+            isGalleryOpen: true,
+            isGalleryCreate: true
         }
     },
     {
@@ -146,7 +164,9 @@ const routes = [
         component: ViewGallery,
         meta: {
             login_required: true,
-            hideSidebar: false
+            hideSidebar: false,
+            isGalleryOpen: true,
+            isGalleryView: true
         }
     },
     {
@@ -155,7 +175,8 @@ const routes = [
         component: editGallery,
         meta: {
             login_required: true,
-            hideSidebar: false
+            hideSidebar: false,
+            isGalleryOpen: true
         }
     },
 
@@ -166,7 +187,9 @@ const routes = [
         component: CreateResearch,
         meta: {
             login_required: true,
-            hideSidebar: false
+            hideSidebar: false,
+            isResearchOpen: true,
+            isResearchCreate: true
         }
     },
     {
@@ -175,7 +198,9 @@ const routes = [
         component: ViewResearch,
         meta: {
             login_required: true,
-            hideSidebar: false
+            hideSidebar: false,
+            isResearchOpen: true,
+            isResearchView: true
         }
     },
     {
@@ -184,18 +209,20 @@ const routes = [
         component: EditResearch,
         meta: {
             login_required: true,
-            hideSidebar: false
+            hideSidebar: false,
+            isResearchOpen: true
         }
     },
 
-    // Contact
+    // Contact 
     {
         path: '/contact/view',
         name: 'ViewContact',
         component: ViewContact,
         meta: {
             login_required: true,
-            hideSidebar: false
+            hideSidebar: false,
+            isContactOpen: true
         }
     },
 ]
