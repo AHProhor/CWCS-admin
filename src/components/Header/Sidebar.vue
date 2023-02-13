@@ -15,6 +15,27 @@
                 </router-link>
             </div>
 
+            <!-- Slider -->
+            <div class="bg-black rounded-md my-3">
+                <p class="flex items-center px-6 py-5 font-semibold cursor-pointer" @click="showSlider" :class="{'clicked': $route.meta.isSliderOpen}"><i class="pi pi-calendar pr-5" style="font-size: 1.2rem"></i>Slider</p>
+
+                <div v-if="$route.meta.isSliderOpen || displaySlider" class="text-sm">
+                    <router-link to="/slider/create">
+                        <div @click="selectSliderCreate" :class="$route.meta.isSliderCreate ? 'bg-orange-300 text-white font-semibold' : 'text-white'" class="flex items-center justify-start px-16 py-3 hover:bg-orange-300">
+                            <i class="pi pi-file-edit pr-1 sm:pr-2" style="font-size: 0.8rem"></i>
+                            <p>Create</p>
+                        </div> 
+                    </router-link>
+
+                    <router-link to="/slider/view">
+                        <div @click="selectSliderView" :class="$route.meta.isSliderView ? 'bg-orange-300 text-white font-semibold' : 'text-white'" class="flex items-center justify-start px-16 py-3 hover:bg-orange-300 rounded-b-md">
+                            <i class="pi pi-eye pr-1 sm:pr-2" style="font-size: 0.8rem"></i>
+                            <p>View</p>
+                        </div>  
+                    </router-link>
+                </div>
+            </div>
+
             <!-- Home -->
             <div class="bg-black rounded-md my-3">
                 <p class="flex items-center px-6 py-5 font-semibold cursor-pointer" @click="showHome" :class="{'clicked': $route.meta.isHomeOpen}"><i class="pi pi-calendar pr-5" style="font-size: 1.2rem"></i>Home</p>
@@ -141,6 +162,7 @@ export default {
     data() {
         return {
             displayDashboard: false,
+            displaySlider: false,
             displayAreaOfWork: false,
             displayProjects: false,
             displayHome: false,
@@ -155,6 +177,10 @@ export default {
             showHomeColor: true,
             homeCreateColor: false,
             homeViewColor: false,
+
+            showSliderColor: true,
+            sliderCreateColor: false,
+            sliderViewColor: true,
 
             showProjectColor: true,
             projectCreateColor: false,
@@ -174,6 +200,7 @@ export default {
         showDashboard() {
             if(this.displayDashboard == false) {
                 this.displayDashboard = true
+                this.displaySlider = false
                 this.displayAreaOfWork = false
                 this.displayProjects = false
                 this.displayHome = false
@@ -189,6 +216,7 @@ export default {
             if(this.displayAreaOfWork == false) {
                 this.displayDashboard = false
                 this.displayAreaOfWork = true
+                this.displaySlider = false
                 this.displayProjects = false
                 this.displayHome = false
                 this.displayGallery = false
@@ -216,6 +244,7 @@ export default {
         showProjects() {
             if(this.displayProjects == false) {
                 this.displayDashboard = false
+                this.displaySlider = false
                 this.displayAreaOfWork = false
                 this.displayProjects = true
                 this.displayHome = false
@@ -244,6 +273,7 @@ export default {
         showHome() {
             if(this.displayHome == false) {
                 this.displayDashboard = false
+                this.displaySlider = false
                 this.displayAreaOfWork = false
                 this.displayProjects = false
                 this.displayHome = true
@@ -269,9 +299,39 @@ export default {
             this.homeViewColor = true
         },
 
+        showSlider() {
+            if(this.displaySlider == false) {
+                this.displayDashboard = false
+                this.displaySlider = true
+                this.displayAreaOfWork = false
+                this.displayProjects = false
+                this.displayHome = false
+                this.displayGallery = false
+                this.displayContact = false
+                this.displayResearch = false
+            } else {
+                this.displaySlider = true
+            }
+        },
+
+        selectSliderCreate() {
+            this.$route.meta.isSliderOpen = true
+            this.showSliderColor = false
+            this.sliderCreateColor = true
+            this.sliderViewColor = false
+        },
+
+        selectSliderView() {
+            this.$route.meta.isSliderOpen = true
+            this.showSliderColor = false
+            this.sliderCreateColor = false
+            this.sliderViewColor = true
+        },
+
         showGallery() {
             if(this.displayGallery == false) {
                 this.displayDashboard = false
+                this.displaySlider = false
                 this.displayAreaOfWork = false
                 this.displayProjects = false
                 this.displayHome = false
@@ -300,6 +360,7 @@ export default {
         showResearch() {
             if(this.displayResearch == false) {
                 this.displayDashboard = false
+                this.displaySlider = false
                 this.displayAreaOfWork = false
                 this.displayProjects = false
                 this.displayHome = false
@@ -328,6 +389,7 @@ export default {
         showContact() {
             if(this.displayContact == false) {
                 this.displayDashboard = false
+                this.displaySlider = false
                 this.displayAreaOfWork = false
                 this.displayProjects = false
                 this.displayHome = false

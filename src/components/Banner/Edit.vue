@@ -9,7 +9,7 @@
 
                 <div>
                     <!-- Top Banner -->
-                    <div>
+                    <!-- <div>
                         <p class="text-lg pb-2">Top Banner</p>
                         <div class="w-full pb-4">
                             <p class="pb-1 text-gray-500">Title</p>
@@ -29,10 +29,10 @@
                             </div>
                         </div>
 
-                    </div>
+                    </div> -->
                     
                     <!-- Mid Layer Banner -->
-                    <div class="pt-8">
+                    <div class="">
                         <p class="text-lg pb-2">Mid Layer Section</p>
 
                         <div class="pb-4">
@@ -173,10 +173,9 @@ export default {
             host: "https://cwcsapi.smicee.com",
             homeDetails: {
                 id:null,
-                title: "",
-                details: "",
-                // image: null,
-                top_banner_image:null,
+                // title: "",
+                // details: "",
+                // top_banner_image:null,
                 mid_banner_image:null,
                 mid_layer_image:null,
                 footer_image:null,
@@ -204,7 +203,7 @@ export default {
                 },
             },
 
-            show_top_banner_image:null,
+            // show_top_banner_image:null,
             show_mid_banner_image:null,
             show_mid_layer_image:null,
             show_footer_image:null,
@@ -253,9 +252,9 @@ export default {
         details(oldValue, newValue){
             this.homeDetails.id = this.details.id,
 
-            this.homeDetails.title = this.details.title,
-            this.homeDetails.details = this.details.details,
-            this.show_top_banner_image = this.host+this.details.top_banner_image,
+            // this.homeDetails.title = this.details.title,
+            // this.homeDetails.details = this.details.details,
+            // this.show_top_banner_image = this.host+this.details.top_banner_image,
             this.show_mid_banner_image = this.host+this.details.mid_banner_image,
             this.show_mid_layer_image = this.host+this.details.mid_layer_image,
             this.show_footer_image = this.host+this.details.footer_image,
@@ -289,15 +288,15 @@ export default {
             })
         },
 
-        uploadTopBannerImage(e){
-            const image = e.target.files[0];
-            const reader = new FileReader();
-            reader.readAsDataURL(image);
-            reader.onload = e =>{
-                this.homeDetails.top_banner_image = e.target.result;
-                this.show_top_banner_image = e.target.result;
-            };
-        },
+        // uploadTopBannerImage(e){
+        //     const image = e.target.files[0];
+        //     const reader = new FileReader();
+        //     reader.readAsDataURL(image);
+        //     reader.onload = e =>{
+        //         this.homeDetails.top_banner_image = e.target.result;
+        //         this.show_top_banner_image = e.target.result;
+        //     };
+        // },
 
         uploadMidLayerImage(e){
             const image = e.target.files[0];

@@ -6,6 +6,11 @@ const FAPI = {
     // Dashboard
     'get_item_count': host+'/home/count/',
 
+    // Slider
+    'post_slider': host+'/home/slider-data/create',
+    'get_slider': host+'/home/slider-data',
+    'delete_slider': host+'/home/slider-data/delete/',
+
     // home 
     'create_home': host+'/home/create/',
     'get_home': host+'/home/list/',

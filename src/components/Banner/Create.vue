@@ -8,31 +8,8 @@
                 </div>
 
                 <div>
-                    <!-- Top Banner -->
-                    <div>
-                        <p class="text-lg pb-2">Top Banner</p>
-                        <div class="w-full pb-4">
-                            <p class="pb-1 text-gray-500">Title</p>
-                            <InputText type="text" class="w-full dropdown-height" v-model="banner.title"/>
-                        </div>
-
-                        <div class="pb-4">
-                            <p class="pb-1 text-gray-500">Short Details</p>
-                            <Textarea class="w-full" v-model="banner.details" :autoResize="true" rows="4" cols="30" />
-                        </div>
-
-                        <div class="pb-4">
-                            <p class="pb-1 text-gray-500">Banner Image</p>
-                            <div class="flex items-center">
-                                <img v-if="banner.top_banner_image" class="h-28 w-32" :src="banner.top_banner_image">
-                                <input :class="banner.top_banner_image ? 'ml-4' : 'ml-0'" type="file" accept="image/*" @change="uploadTopBannerImage">
-                            </div>
-                        </div>
-
-                    </div>
-                    
                     <!-- Mid Layer Banner -->
-                    <div class="pt-8">
+                    <div class="">
                         <p class="text-lg pb-2">Mid Layer Section</p>
 
                         <div class="pb-4">
@@ -168,10 +145,6 @@ export default {
         return {
             host: "https://cwcsapi.smicee.com",
             banner: {
-                title: "",
-                details: "",
-                // image: null,
-                top_banner_image:null,
                 mid_banner_image:null,
                 mid_layer_image:null,
                 footer_image:null,
@@ -231,16 +204,12 @@ export default {
 
     methods: {
         createHome() {
-            console.log(this.banner)
+            // console.log(this.banner)
             this.$store.dispatch('home/create_home', this.banner).then(response => {
-                console.log(response.data)    
+                // console.log(response.data)    
                 if(response.data.code == 200) { 
                     this.$toast.add({severity: 'success', summary: 'Success!', detail: response.data.response, closable: false, life: 3000})
 
-                    this.banner.title= ""
-                    this.banner.details = ""
-                    this.banner.image = null,
-                    this.banner.top_banner_image = null,
                     this.banner.mid_banner_image = null,
                     this.banner.mid_layer_image = null,
                     this.banner.footer_image = null
@@ -267,14 +236,14 @@ export default {
             })
         },
 
-        uploadTopBannerImage(e){
-            const image = e.target.files[0];
-            const reader = new FileReader();
-            reader.readAsDataURL(image);
-            reader.onload = e =>{
-                this.banner.top_banner_image = e.target.result;
-            };
-        },
+        // uploadTopBannerImage(e){
+        //     const image = e.target.files[0];
+        //     const reader = new FileReader();
+        //     reader.readAsDataURL(image);
+        //     reader.onload = e =>{
+        //         this.banner.top_banner_image = e.target.result;
+        //     };
+        // },
 
         uploadMidLayerImage(e){
             const image = e.target.files[0];

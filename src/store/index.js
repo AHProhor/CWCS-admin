@@ -6,6 +6,7 @@ import projects from'./modules/projects'
 import campaigns from './modules/campaigns'
 import research from './modules/researchAndPublications'
 import gallery from './modules/gallery'
+import slider from './modules/slider'
 import contact from './modules/contact'
 import home from './modules/home'
 
@@ -19,7 +20,8 @@ export default createStore({
         gallery,
         contact,
         research,
-        home
+        home,
+        slider
     },
 
     state () {

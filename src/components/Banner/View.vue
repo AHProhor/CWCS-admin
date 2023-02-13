@@ -7,14 +7,6 @@
                     <p class="text-left text-xl font font-semibold pb-6">View Home</p>
                     <DataTable ref="dt" :value="homeData" dataKey="id" :paginator="true" :rows="5" paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,15]" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" responsiveLayout="scroll">
 
-                        <Column field="title" header="Title" :sortable="true" style="min-width:15rem"></Column>
-
-                        <Column :exportable="false" header="Top Banner" :sortable="true" style="min-width:10rem">
-                            <template #body="{data}">
-                                <img class="rounded-md h-20 2xl:h-28" :src="host + data.top_banner_image" alt="">
-                            </template>
-                        </Column>
-
                         <Column :exportable="false" header="Mid Banner" :sortable="true" style="min-width:10rem">
                             <template #body="{data}">
                                 <img class="rounded-md h-20 2xl:h-28" :src="host + data.mid_banner_image" alt="">
@@ -66,7 +58,7 @@
                     </div>
                     <template #footer>
                         <Button label="No" icon="pi pi-times" class="p-button-text" @click="deleteBannerDialog = false"/>
-                        <Button label="Yes" icon="pi pi-check" class="p-button-text" @click="deleteBanner(temp_banner.slug)" />
+                        <Button label="Yes" icon="pi pi-check" class="p-button-text" @click="deleteBanner(temp_banner.id)" />
                     </template>
                 </Dialog>
             </div>
@@ -85,7 +77,6 @@ import Dialog from 'primevue/dialog';
 import vSelect from 'vue-select';
 import 'vue-select/dist/vue-select.css';
 import Toast from "primevue/toast";
-import moment from 'moment'
 import { RouterLink } from "vue-router";
 
 export default {
@@ -148,8 +139,8 @@ export default {
             this.deleteBannerDialog = true;
         },
 
-        deleteBanner (bannnerSlug) {
-            this.$store.dispatch("home/delete_home", bannnerSlug).then(response => {
+        deleteBanner (bannnerId) {
+            this.$store.dispatch("home/delete_home", bannnerId).then(response => {
                 // console.log(response.data)
                 if(response.data.code == 200) { 
                     this.$toast.add({severity: 'success', summary: 'Success!', detail:response.data.response, closable: false, life: 3000})

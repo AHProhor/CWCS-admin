@@ -22,6 +22,9 @@ import CreateBanner from '../views/Banner/create/index.vue'
 import ViewBanner from '../views/Banner/view/index.vue'
 import EditBanner from '../views/Banner/Edit/[id].vue'
 
+import CreateSlider from '../views/slider/create/index.vue'
+import ViewSlider from '../views/slider/view/index.vue'
+
 import ViewContact from '../views/contact/index.vue'
 
 const routes = [
@@ -41,6 +44,64 @@ const routes = [
         component: Login,
         meta: {
             hideSidebar: true,
+        }
+    },
+
+     // Slider
+     {
+        path: '/slider/create',
+        name: 'CreateSlider',
+        component: CreateSlider,
+        meta: {
+            login_required: true,
+            hideSidebar: false,
+            isSliderOpen: true,
+            isSliderCreate: true
+        }
+    },
+    {
+        path: '/slider/view',
+        name: 'ViewSlider',
+        component: ViewSlider,
+        meta: {
+            login_required: true,
+            hideSidebar: false,
+            isSliderOpen: true,
+            isSliderView: true
+        }
+    },
+
+    // Home
+    {
+        path: '/home/create',
+        name: 'CreateBanner',
+        component: CreateBanner,
+        meta: {
+            login_required: true,
+            hideSidebar: false,
+            isHomeOpen: true,
+            isHomeCreate: true
+        }
+    },
+    {
+        path: '/home/view',
+        name: 'ViewBanner',
+        component: ViewBanner,
+        meta: {
+            login_required: true,
+            hideSidebar: false,
+            isHomeOpen: true,
+            isHomeView: true
+        }
+    },
+    {
+        path: '/home/edit/:id',
+        name: 'EditBanner',
+        component: EditBanner,
+        meta: {
+            login_required: true,
+            hideSidebar: false,
+            isHomeOpen: true
         }
     },
 
@@ -109,40 +170,6 @@ const routes = [
             login_required: true,
             hideSidebar: false,
             isProjectOpen: true
-        }
-    },
-
-    // Banner
-    {
-        path: '/home/create',
-        name: 'CreateBanner',
-        component: CreateBanner,
-        meta: {
-            login_required: true,
-            hideSidebar: false,
-            isHomeOpen: true,
-            isHomeCreate: true
-        }
-    },
-    {
-        path: '/home/view',
-        name: 'ViewBanner',
-        component: ViewBanner,
-        meta: {
-            login_required: true,
-            hideSidebar: false,
-            isHomeOpen: true,
-            isHomeView: true
-        }
-    },
-    {
-        path: '/home/edit/:id',
-        name: 'EditBanner',
-        component: EditBanner,
-        meta: {
-            login_required: true,
-            hideSidebar: false,
-            isHomeOpen: true
         }
     },
 
