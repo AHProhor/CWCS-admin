@@ -16,11 +16,6 @@
                     </div>
 
                     <div class="pb-4">
-                        <p class="pb-1 text-gray-500">Description</p>
-                        <Textarea class="w-full" v-model="slider.description" :autoResize="true" rows="4" cols="30" />
-                    </div>
-
-                    <div class="pb-4">
                         <p class="pb-1 text-gray-500">Image</p>
                         <div class="flex items-center">
                             <img v-if="slider.image" class="h-28 w-32" :src="slider.image">
@@ -57,7 +52,7 @@ export default {
             host: "https://cwcsapi.smicee.com",
             slider: {
                 title: "",
-                description: "",
+                description: "something",
                 image: null
             }
         }

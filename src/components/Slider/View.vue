@@ -9,12 +9,6 @@
 
                         <Column field="title" header="Title" :sortable="true" style="max-width:20rem"></Column>
 
-                        <Column header="Description" :sortable="true" style="max-width:35rem">
-                            <template #body="{data}">
-                                <p class="text-justify pr-8">{{data.description}}</p>
-                            </template>
-                        </Column>
-
                         <Column :exportable="false" header="Image" :sortable="true" style="max-width:22rem">
                             <template #body="{data}">
                                 <img class="rounded-md w-36 h-28" :src="host + data.image" alt="">
