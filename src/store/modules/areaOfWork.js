@@ -60,6 +60,7 @@ const actions = {
             {
                 title: payload.aow.title,
                 details: payload.aow.details,
+                priority: payload.aow.priority,
                 image: payload.aow.image,
             }
             ,config).then(result => {

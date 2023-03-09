@@ -20,6 +20,13 @@
                         <Textarea class="w-full" v-model="aow.details" :autoResize="true" rows="4" cols="30" />
                     </div>
 
+                    <div class="pb-4 flex">
+                        <div class="pr-2 w-1/2">
+                            <p class="pb-1 text-gray-500">Priority</p>
+                            <InputText type="text" class="w-full dropdown-height" v-model="aow.priority" />
+                        </div>
+                    </div>
+
                     <div class="pb-4">
                         <p class="pb-1 text-gray-500">Image</p>
                         <div class="flex items-center">
@@ -58,6 +65,7 @@ export default {
             aow: {
                 title: "",
                 details: "",
+                priority:null,
                 image: null
             }
         }
@@ -65,13 +73,14 @@ export default {
 
     methods: {
         submit() {
-            // console.log(this.aow)
+            console.log(this.aow)
             this.$store.dispatch('areaOfWork/create_aow', this.aow).then(response => {
                 console.log(response)    
                 if(response.data.code == 200) { 
                     this.$toast.add({severity: 'success', summary: 'Success!', detail: response.data.response, closable: false, life: 3000})
                     this.aow.title= ""
                     this.aow.details = ""
+                    this.aow.priority = null
                     this.aow.image = null
                 }
                 else {

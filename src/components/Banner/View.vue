@@ -13,11 +13,11 @@
                             </template>
                         </Column>
 
-                        <Column :exportable="false" header="Bottom Banner" :sortable="true" style="min-width:10rem">
+                        <!-- <Column :exportable="false" header="Bottom Banner" :sortable="true" style="min-width:10rem">
                             <template #body="{data}">
                                 <img class="rounded-md h-20 2xl:h-28" :src="host + data.mid_layer_image" alt="">
                             </template>
-                        </Column>
+                        </Column> -->
 
                         <Column :exportable="false" header="Footer Banner" :sortable="true" style="min-width:10rem">
                             <template #body="{data}">

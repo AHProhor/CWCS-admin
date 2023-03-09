@@ -20,6 +20,14 @@
                         <Textarea class="w-full" v-model="edit_aow.details" :autoResize="true" rows="4" cols="30" />
                     </div>
 
+                    <div class="pb-4 flex">
+                        <div class="pr-2 w-1/2">
+                            <p class="pb-1 text-gray-500">Priority</p>
+                            <InputText type="text" class="w-full dropdown-height" v-model="edit_aow.priority" />
+                        </div>
+                    </div>
+
+
                     <div class="pb-4">
                         <p class="pb-1 text-gray-500">Image</p>
                         <div class="flex items-center">
@@ -105,6 +113,7 @@ export default {
     watch:{
         aow(oldValue, newValue){
             this.edit_aow.title = this.aow.title
+            this.edit_aow.priority = this.aow.priority
             this.edit_aow.details = this.aow.details
             this.show_image = this.host + this.aow.image
         }

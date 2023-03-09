@@ -9,11 +9,13 @@
 
                         <Column field="title" header="Title" :sortable="true" style="max-width:20rem"></Column>
 
-                        <Column :exportable="false" header="Image" :sortable="true" style="max-width:22rem">
+                        <Column :exportable="false" header="Image" :sortable="true" style="max-width:40rem">
                             <template #body="{data}">
                                 <img class="rounded-md w-36 h-28" :src="host + data.image" alt="">
                             </template>
                         </Column>
+
+                        <Column field="priority" header="Priority" :sortable="true" style="max-width:10rem"/>
 
                         <Column header="Action" :exportable="false" style="max-width:8rem">
                             <template #body="slotProps">
@@ -44,10 +46,10 @@
 
 <script>
 import { mapState } from "vuex";
+import InputText from 'primevue/inputtext';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import Button from 'primevue/button';
-import InputText from 'primevue/inputtext';
 import Textarea from 'primevue/textarea';
 import Dialog from 'primevue/dialog';
 import 'vue-select/dist/vue-select.css';

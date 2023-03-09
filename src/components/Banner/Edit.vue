@@ -8,29 +8,6 @@
                 </div>
 
                 <div>
-                    <!-- Top Banner -->
-                    <!-- <div>
-                        <p class="text-lg pb-2">Top Banner</p>
-                        <div class="w-full pb-4">
-                            <p class="pb-1 text-gray-500">Title</p>
-                            <InputText type="text" class="w-full dropdown-height" v-model="homeDetails.title"/>
-                        </div>
-
-                        <div class="pb-4">
-                            <p class="pb-1 text-gray-500">Short Details</p>
-                            <Textarea class="w-full" v-model="homeDetails.details" :autoResize="true" rows="4" cols="30" />
-                        </div>
-
-                        <div class="pb-4">
-                            <p class="pb-1 text-gray-500">Top Banner Image</p>
-                            <div class="flex items-center">
-                                <img v-if="show_top_banner_image" class="h-28 w-32" :src="show_top_banner_image">
-                                <input :class="show_top_banner_image ? 'ml-4' : 'ml-0'" type="file" accept="image/*" @change="uploadTopBannerImage">
-                            </div>
-                        </div>
-
-                    </div> -->
-                    
                     <!-- Mid Layer Banner -->
                     <div class="">
                         <p class="text-lg pb-2">Mid Layer Section</p>
@@ -40,86 +17,6 @@
                             <div class="flex items-center">
                                 <img v-if="show_mid_banner_image" class="h-28 w-32" :src="show_mid_banner_image">
                                 <input :class="show_mid_banner_image ? 'ml-4' : 'ml-0'" type="file" accept="image/*" @change="uploadMidLayerImage">
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!-- Bottom Layer Banner -->
-                    <div class="pt-8">
-                        <p class="text-lg pb-2">Bottom Layer Section</p>
-
-                        <div class="pb-4">
-                            <p class="pb-1 text-gray-500">Bottom Banner Image</p>
-                            <div class="flex items-center">
-                                <img v-if="show_mid_layer_image" class="h-28 w-32" :src="show_mid_layer_image">
-                                <input :class="show_mid_layer_image ? 'ml-4' : 'ml-0'" type="file" accept="image/*" @change="uploadBottomLayerImage">
-                            </div>
-                        </div>
-
-                        <div class="w-full pb-4">
-                            <p class="pb-2 text-lg pt-2">Company Overview</p>
-                            <div class="flex flex-col">
-                                <div class="flex items-center gap-6" v-if="homeDetails.experience_data">
-                                    <p class="font-semibold">1</p>
-                                    <div>
-                                        <p>Icon: </p>
-                                        <InputText type="text" class="w-full dropdown-height" v-model="homeDetails.experience_data.year.icon"/>
-                                    </div>
-                                    <div>
-                                        <p>Value: </p>
-                                        <InputText type="text" class="w-full dropdown-height" v-model="homeDetails.experience_data.year.value"/>
-                                    </div>
-                                    <div>
-                                        <p>Title: </p>
-                                        <InputText type="text" class="w-full dropdown-height" v-model="homeDetails.experience_data.year.title"/>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-6 pt-4" v-if="homeDetails.experience_data">
-                                    <p class="font-semibold">2</p>
-                                    <div>
-                                        <p>Icon: </p>
-                                        <InputText type="text" class="w-full dropdown-height" v-model="homeDetails.experience_data.concern.icon"/>
-                                    </div>
-                                    <div>
-                                        <p>Value: </p>
-                                        <InputText type="text" class="w-full dropdown-height" v-model="homeDetails.experience_data.concern.value"/>
-                                    </div>
-                                    <div>
-                                        <p>Title: </p>
-                                        <InputText type="text" class="w-full dropdown-height" v-model="homeDetails.experience_data.concern.title"/>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-6 pt-4" v-if="homeDetails.experience_data">
-                                    <p class="font-semibold">3</p>
-                                    <div>
-                                        <p>Icon: </p>
-                                        <InputText type="text" class="w-full dropdown-height" v-model="homeDetails.experience_data.client.icon"/>
-                                    </div>
-                                    <div>
-                                        <p>Value: </p>
-                                        <InputText type="text" class="w-full dropdown-height" v-model="homeDetails.experience_data.client.value"/>
-                                    </div>
-                                    <div>
-                                        <p>Title: </p>
-                                        <InputText type="text" class="w-full dropdown-height" v-model="homeDetails.experience_data.client.title"/>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-6 pt-4" v-if="homeDetails.experience_data">
-                                    <p class="font-semibold">4</p>
-                                    <div>
-                                        <p>Icon: </p>
-                                        <InputText type="text" class="w-full dropdown-height" v-model="homeDetails.experience_data.projects.icon"/>
-                                    </div>
-                                    <div>
-                                        <p>Value: </p>
-                                        <InputText type="text" class="w-full dropdown-height" v-model="homeDetails.experience_data.projects.value"/>
-                                    </div>
-                                    <div>
-                                        <p>Title: </p>
-                                        <InputText type="text" class="w-full dropdown-height" v-model="homeDetails.experience_data.projects.title"/>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -177,30 +74,7 @@ export default {
                 // details: "",
                 // top_banner_image:null,
                 mid_banner_image:null,
-                mid_layer_image:null,
                 footer_image:null,
-                experience_data: {
-                    year: {
-                        icon: "",
-                        value: "",
-                        title: ""
-                    },
-                    concern: {
-                        icon: "",
-                        value: "",
-                        title: ""
-                    }, 
-                    client: {
-                        icon: "",
-                        value: "",
-                        title: ""
-                    }, 
-                    projects:{
-                        icon: "",
-                        value: "",
-                        title: ""
-                    }
-                },
             },
 
             // show_top_banner_image:null,
@@ -251,25 +125,8 @@ export default {
     watch:{
         details(oldValue, newValue){
             this.homeDetails.id = this.details.id,
-
-            // this.homeDetails.title = this.details.title,
-            // this.homeDetails.details = this.details.details,
-            // this.show_top_banner_image = this.host+this.details.top_banner_image,
             this.show_mid_banner_image = this.host+this.details.mid_banner_image,
-            this.show_mid_layer_image = this.host+this.details.mid_layer_image,
-            this.show_footer_image = this.host+this.details.footer_image,
-            this.homeDetails.experience_data.year.icon = this.details.experience_data.year.icon
-            this.homeDetails.experience_data.year.value = this.details.experience_data.year.value
-            this.homeDetails.experience_data.year.title = this.details.experience_data.year.title
-            this.homeDetails.experience_data.concern.icon = this.details.experience_data.concern.icon
-            this.homeDetails.experience_data.concern.value = this.details.experience_data.concern.value
-            this.homeDetails.experience_data.concern.title = this.details.experience_data.concern.title
-            this.homeDetails.experience_data.client.icon = this.details.experience_data.client.icon
-            this.homeDetails.experience_data.client.value = this.details.experience_data.client.value
-            this.homeDetails.experience_data.client.title = this.details.experience_data.client.title
-            this.homeDetails.experience_data.projects.icon = this.details.experience_data.projects.icon
-            this.homeDetails.experience_data.projects.value = this.details.experience_data.projects.value
-            this.homeDetails.experience_data.projects.title = this.details.experience_data.projects.title
+            this.show_footer_image = this.host+this.details.footer_image
         }
     },
 
@@ -288,16 +145,6 @@ export default {
             })
         },
 
-        // uploadTopBannerImage(e){
-        //     const image = e.target.files[0];
-        //     const reader = new FileReader();
-        //     reader.readAsDataURL(image);
-        //     reader.onload = e =>{
-        //         this.homeDetails.top_banner_image = e.target.result;
-        //         this.show_top_banner_image = e.target.result;
-        //     };
-        // },
-
         uploadMidLayerImage(e){
             const image = e.target.files[0];
             const reader = new FileReader();
@@ -305,16 +152,6 @@ export default {
             reader.onload = e =>{
                 this.homeDetails.mid_banner_image = e.target.result;
                 this.show_mid_banner_image = e.target.result;
-            };
-        },
-
-        uploadBottomLayerImage(e){
-            const image = e.target.files[0];
-            const reader = new FileReader();
-            reader.readAsDataURL(image);
-            reader.onload = e =>{
-                this.homeDetails.mid_layer_image = e.target.result;
-                this.show_mid_layer_image = e.target.result;
             };
         },
 

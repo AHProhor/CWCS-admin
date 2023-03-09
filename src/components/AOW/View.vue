@@ -7,9 +7,9 @@
                     <p class="text-left text-xl font-semibold pb-6">View Area Of Work</p>
                     <DataTable ref="dt" :value="areaOfWorkData" dataKey="id" :paginator="true" :rows="5" paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,15]" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" responsiveLayout="scroll">
 
-                        <Column field="title" header="Title" :sortable="true" style="max-width:20rem"></Column>
+                        <Column field="title" header="Title" :sortable="true" style="max-width:10rem"></Column>
 
-                        <Column header="Details" :sortable="true" style="max-width:35rem">
+                        <Column header="Details" :sortable="true" style="max-width:30rem">
                             <template #body="{data}">
                                 <p v-if="data.details.length < 180" class="text-justify pr-8">{{data.details}}</p>
                                 <p v-else class="text-justify pr-8">{{ data.details.substring(0, 180) + "..." }}</p>
@@ -21,6 +21,8 @@
                                 <img class="rounded-md w-36 h-28" :src="host + data.image" alt="">
                             </template>
                         </Column>
+
+                        <Column field="priority" header="Priority" :sortable="true" style="max-width:10rem"></Column>
 
                         <Column header="Action" :exportable="false" style="max-width:8rem">
                             <template #body="slotProps">

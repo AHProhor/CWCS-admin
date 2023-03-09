@@ -3,6 +3,7 @@ import FAPI from '../../../api-path/api-path';
 
 const state = {
     gallery: [],
+    gallery_by_project:[],
     message: "",
     edited_gallery: {},
     gallery_details:{}
@@ -29,6 +30,10 @@ const mutations = {
     
     GET_GALLERY_DETAILS(state, items){
         state.gallery_details = items
+    },
+
+    GET_GALLERY_BY_PROJECT(state, items){
+        state.gallery_by_project = items
     }
 }
 
@@ -99,6 +104,20 @@ const actions = {
         let response = await axios.get(FAPI.get_gallery_by_slug + payload, config).then(result => {
             let items = result.data.data
             commit('GET_GALLERY_DETAILS', items)
+            return result
+        })
+        return response
+    },
+
+    async getGalleryByProject ({ commit, dispatch }, payload) {
+        let config=
+            {
+                headers:  { 'Authorization': 'Bearer ' + localStorage.getItem('access_token') }    
+            }
+
+        let response = await axios.get(FAPI.get_gallery_by_project + payload, config).then(result => {
+            let items = result.data.data
+            commit('GET_GALLERY_BY_PROJECT', items)
             return result
         })
         return response

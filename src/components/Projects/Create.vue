@@ -15,6 +15,11 @@
                         </div>
                     </div>
 
+                    <div class="pb-4">
+                        <p class="pb-1 text-gray-500">Short Description</p>
+                        <Textarea class="w-full" v-model="project.short_description" :autoResize="true" rows="4" cols="30" />
+                    </div>
+
                     <div class="pb-4 flex w-full">
                         <div class="w-1/2 pr-2">
                             <p class="pb-1 text-gray-500">Ongoing Project</p>
@@ -49,6 +54,13 @@
                             v-model="project.details"
                             :config="editorConfig"
                         ></ckeditor>
+                    </div>
+
+                    <div class="pb-4 flex w-full">
+                        <div class="w-1/2">
+                            <p class="pb-1 text-gray-500 ">Priority</p>
+                            <InputText type="text" class="w-full dropdown-height" v-model="project.priority"/>
+                        </div>
                     </div>
 
                     <div class="pb-4">
@@ -94,9 +106,11 @@ export default {
             host: "https://cwcsapi.smicee.com",
             project: {
                 title: "",
+                short_description: "",
                 details: "",
                 featured: 0,
                 areaofwork: null,
+                priority: null,
                 image: null,
             },
             featured_options: [
@@ -158,9 +172,11 @@ export default {
                 if(response.data.code == 200) { 
                     this.$toast.add({severity: 'success', summary: 'Success!', detail: response.data.response, closable: false, life: 3000})
                     this.project.title= ""
+                    this.project.short_description = ""
                     this.project.details = ""
                     this.project.featured = null
                     this.project.areaofwork = null
+                    this.project.priority = ""
                     this.project.image = null
                 }
                 else {

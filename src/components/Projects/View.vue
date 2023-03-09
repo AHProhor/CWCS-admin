@@ -8,7 +8,7 @@
 
                     <Column field="title" header="Title" :sortable="true" style="min-width:10rem"></Column>
 
-                    <Column header="Details" :sortable="true" style="max-width:35rem">
+                    <Column header="Details" :sortable="true" style="max-width:30rem">
                         <template #body="{data}">
                             <p v-if="data.details.length < 180" class="text-left pr-8" v-html="data.details"></p>
                             <p v-else class="text-left pr-8" v-html="data.details.substring(0, 180)"></p>
@@ -37,6 +37,8 @@
                             <img class="rounded-md w-36 h-28" :src="host + slotProps.data.image" alt="">
                         </template>
                     </Column>
+
+                    <Column field="priority" header="Priority" :sortable="true" style="min-width:10rem"></Column>
 
                     <Column header="Actionss" :exportable="false" style="min-width:8rem">
                         <template #body="slotProps">
@@ -74,7 +76,6 @@ import { mapState } from "vuex";
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import Button from 'primevue/button';
-import InputText from 'primevue/inputtext';
 import Textarea from 'primevue/textarea';
 import Dialog from 'primevue/dialog';
 import ToggleButton from 'primevue/togglebutton';
@@ -87,7 +88,6 @@ export default {
         DataTable,
         Column,
         Button,
-        InputText,
         Textarea,
         Dialog,
         ToggleButton,

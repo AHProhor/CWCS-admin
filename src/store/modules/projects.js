@@ -74,6 +74,7 @@ const actions = {
         let response = await axios.patch(FAPI.edit_projects + payload.slug, 
             {
                 title: payload.project.title,
+                short_description: payload.project.short_description,
                 details: payload.project.details,
                 image: payload.project.image,
                 areaofwork: [payload.project.areaofwork.id],

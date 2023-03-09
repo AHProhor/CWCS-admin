@@ -15,6 +15,11 @@
                         </div>
                     </div>
 
+                    <div class="pb-4">
+                        <p class="pb-1 text-gray-500">Short Description</p>
+                        <Textarea class="w-full" v-model="aow.short_description" :autoResize="true" rows="4" cols="30" />
+                    </div>
+
                     <div class="pb-4 flex w-full">
                         <div class="w-1/2 pr-2">
                             <p class="pb-1 text-gray-500">Ongoing Project</p>
@@ -49,6 +54,13 @@
                             v-model="edit_project.details"
                             :config="editorConfig"
                         ></ckeditor>
+                    </div>
+
+                    <div class="pb-4 flex w-1/2">
+                        <div class="w-full">
+                            <p class="pb-1 text-gray-500 ">Priority</p>
+                            <InputText type="text" class="w-full dropdown-height" v-model="edit_project.priority"/>
+                        </div>
                     </div>
 
                     <div class="pb-4">
@@ -94,8 +106,10 @@ export default {
             host: "https://cwcsapi.smicee.com",
             edit_project: {
                 title: "",
+                short_description: "",
                 details: "",
                 featured: null,
+                priority: null,
                 areaofwork: null,
                 image: null,
             },
@@ -182,7 +196,9 @@ export default {
     watch:{
         projectsData(oldValue, newValue){
             this.edit_project.title = this.projectsData.title
+            this.edit_project.short_description = this.projectsData.short_description
             this.edit_project.details = this.projectsData.details
+            this.edit_project.priority = this.projectsData.priority
             this.edit_project.areaofwork = this.projectsData.areaofwork[0]
             if(this.projectsData.featured == false){
                 this.edit_project.featured = 'No'

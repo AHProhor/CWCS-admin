@@ -15,6 +15,13 @@
                         </div>
                     </div>
 
+                    <div class="pb-4 flex">
+                        <div class="pr-2 w-1/2">
+                            <p class="pb-1 text-gray-500">Priority</p>
+                            <InputText type="text" class="w-full dropdown-height" v-model="slider.priority" />
+                        </div>
+                    </div>
+
                     <div class="pb-4">
                         <p class="pb-1 text-gray-500">Image</p>
                         <div class="flex items-center">
@@ -35,7 +42,7 @@
 <script>
 import InputText from 'primevue/inputtext';
 import Textarea from 'primevue/textarea';
-import vSelect from 'vue-select';
+// import vSelect from 'vue-select';
 import 'vue-select/dist/vue-select.css';
 import Toast from 'primevue/toast';
 
@@ -43,7 +50,7 @@ export default {
     components: {
         InputText,
         Textarea,
-        vSelect,
+        // vSelect,
         Toast
     },
 
@@ -52,7 +59,8 @@ export default {
             host: "https://cwcsapi.smicee.com",
             slider: {
                 title: "",
-                description: "something",
+                priority: null,
+                description: "",
                 image: null
             }
         }
@@ -64,6 +72,7 @@ export default {
                 if(response.data.code == 200) { 
                     this.$toast.add({severity: 'success', summary: 'Success!', detail: response.data.response, closable: false, life: 3000})
                     this.slider.title= ""
+                    this.slider.priority= null
                     this.slider.description = ""
                     this.slider.image = null
                 }

@@ -21,85 +21,6 @@
                         </div>
                     </div>
 
-
-                    <!-- Bottom Layer Banner -->
-                    <div class="pt-8">
-                        <p class="text-lg pb-2">Bottom Layer Section</p>
-                        <div class="pb-4">
-                            <p class="pb-1 text-gray-500">Bottom Banner Image</p>
-                            <div class="flex items-center">
-                                <img v-if="banner.mid_layer_image" class="h-28 w-32" :src="banner.mid_layer_image">
-                                <input :class="banner.mid_layer_image ? 'ml-4' : 'ml-0'" type="file" accept="image/*" @change="uploadBottomLayerImage">
-                            </div>
-                        </div>
-                        <!-- Company Experience Data -->
-                        <p class="text-lg pt-4 pb-2">Company Overview</p>
-                        <div class="w-full pb-4">
-                            <div class="flex flex-col">
-                                <div class="flex items-center gap-6">
-                                    <p class="font-semibold">1</p>
-                                    <div>
-                                        <p>Icon: </p>
-                                        <InputText type="text" class="w-full dropdown-height" v-model="banner.experience_data.year.icon"/>
-                                    </div>
-                                    <div>
-                                        <p>Value: </p>
-                                        <InputText type="text" class="w-full dropdown-height" v-model="banner.experience_data.year.value"/>
-                                    </div>
-                                    <div>
-                                        <p>Title: </p>
-                                        <InputText type="text" class="w-full dropdown-height" v-model="banner.experience_data.year.title"/>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-6 pt-4">
-                                    <p class="font-semibold">2</p>
-                                    <div>
-                                        <p>Icon: </p>
-                                        <InputText type="text" class="w-full dropdown-height" v-model="banner.experience_data.concern.icon"/>
-                                    </div>
-                                    <div>
-                                        <p>Value: </p>
-                                        <InputText type="text" class="w-full dropdown-height" v-model="banner.experience_data.concern.value"/>
-                                    </div>
-                                    <div>
-                                        <p>Title: </p>
-                                        <InputText type="text" class="w-full dropdown-height" v-model="banner.experience_data.concern.title"/>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-6 pt-4">
-                                    <p class="font-semibold">3</p>
-                                    <div>
-                                        <p>Icon: </p>
-                                        <InputText type="text" class="w-full dropdown-height" v-model="banner.experience_data.client.icon"/>
-                                    </div>
-                                    <div>
-                                        <p>Value: </p>
-                                        <InputText type="text" class="w-full dropdown-height" v-model="banner.experience_data.client.value"/>
-                                    </div>
-                                    <div>
-                                        <p>Title: </p>
-                                        <InputText type="text" class="w-full dropdown-height" v-model="banner.experience_data.client.title"/>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-6 pt-4">
-                                    <p class="font-semibold">4</p>
-                                    <div>
-                                        <p>Icon: </p>
-                                        <InputText type="text" class="w-full dropdown-height" v-model="banner.experience_data.projects.icon"/>
-                                    </div>
-                                    <div>
-                                        <p>Value: </p>
-                                        <InputText type="text" class="w-full dropdown-height" v-model="banner.experience_data.projects.value"/>
-                                    </div>
-                                    <div>
-                                        <p>Title: </p>
-                                        <InputText type="text" class="w-full dropdown-height" v-model="banner.experience_data.projects.title"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- Footer Image  -->
                     <div class="pt-8">
                         <p class="text-lg pb-2">Footer Section</p>
@@ -146,30 +67,7 @@ export default {
             host: "https://cwcsapi.smicee.com",
             banner: {
                 mid_banner_image:null,
-                mid_layer_image:null,
                 footer_image:null,
-                experience_data: {
-                    year: {
-                        icon: "",
-                        value: "",
-                        title: ""
-                    },
-                    concern: {
-                        icon: "",
-                        value: "",
-                        title: ""
-                    }, 
-                    client: {
-                        icon: "",
-                        value: "",
-                        title: ""
-                    }, 
-                    projects:{
-                        icon: "",
-                        value: "",
-                        title: ""
-                    }
-                },
             },
 
             editor: ClassicEditor,
@@ -211,24 +109,7 @@ export default {
                     this.$toast.add({severity: 'success', summary: 'Success!', detail: response.data.response, closable: false, life: 3000})
 
                     this.banner.mid_banner_image = null,
-                    this.banner.mid_layer_image = null,
                     this.banner.footer_image = null
-
-                    this.banner.experience_data.year.icon = ""
-                    this.banner.experience_data.year.title = ""
-                    this.banner.experience_data.year.value = ""
-
-                    this.banner.experience_data.concern.icon = ""
-                    this.banner.experience_data.concern.title = ""
-                    this.banner.experience_data.concern.value = ""
-
-                    this.banner.experience_data.client.icon = ""
-                    this.banner.experience_data.client.title = ""
-                    this.banner.experience_data.client.value = ""
-
-                    this.banner.experience_data.projects.icon = ""
-                    this.banner.experience_data.projects.title = ""
-                    this.banner.experience_data.projects.value = ""
                 }
                 else {
                     this.$toast.add({severity: 'error', summary: 'Error!', detail: response.data.response, closable: false, life: 3000})
@@ -236,30 +117,12 @@ export default {
             })
         },
 
-        // uploadTopBannerImage(e){
-        //     const image = e.target.files[0];
-        //     const reader = new FileReader();
-        //     reader.readAsDataURL(image);
-        //     reader.onload = e =>{
-        //         this.banner.top_banner_image = e.target.result;
-        //     };
-        // },
-
         uploadMidLayerImage(e){
             const image = e.target.files[0];
             const reader = new FileReader();
             reader.readAsDataURL(image);
             reader.onload = e =>{
                 this.banner.mid_banner_image = e.target.result;
-            };
-        },
-
-        uploadBottomLayerImage(e){
-            const image = e.target.files[0];
-            const reader = new FileReader();
-            reader.readAsDataURL(image);
-            reader.onload = e =>{
-                this.banner.mid_layer_image = e.target.result;
             };
         },
 
