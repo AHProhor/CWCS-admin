@@ -6,6 +6,12 @@
                 <p class="text-left text-xl font-semibold pb-6">View Message</p>
                 <DataTable ref="dt" :value="contactData" dataKey="id" :paginator="true" :rows="10" paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,15]" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" responsiveLayout="scroll">
 
+                    <Column field="serial" header="#" style="width: 10%">
+                        <template #body="{data}">
+                            {{ contactData.indexOf(data) + 1 }}
+                        </template>
+                    </Column>
+
                     <Column field="email" header="Email" :sortable="true" style="min-width:10rem"></Column>
 
                     <Column field="name" header="Name" :sortable="true" style="min-width:10rem"></Column>

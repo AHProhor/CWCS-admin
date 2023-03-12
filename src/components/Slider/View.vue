@@ -7,6 +7,12 @@
                     <p class="text-left text-xl font-semibold pb-6">View Slider</p>
                     <DataTable ref="dt" :value="sliderData" dataKey="id" :paginator="true" :rows="5" paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,15]" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" responsiveLayout="scroll">
 
+                        <Column field="serial" header="#" style="width: 10%">
+                            <template #body="{data}">
+                                {{ sliderData.indexOf(data) + 1 }}
+                            </template>
+                        </Column>
+
                         <Column field="title" header="Title" :sortable="true" style="max-width:20rem"></Column>
 
                         <Column :exportable="false" header="Image" :sortable="true" style="max-width:40rem">
@@ -15,7 +21,11 @@
                             </template>
                         </Column>
 
-                        <Column field="priority" header="Priority" :sortable="true" style="max-width:10rem"/>
+                        <Column header="Priority" :sortable="true" style="max-width:10rem">
+                            <template #body="{data}">
+                                <InputText v-model="data.priority" placeholder="Priority"/>
+                            </template>
+                        </Column>
 
                         <Column header="Action" :exportable="false" style="max-width:8rem">
                             <template #body="slotProps">

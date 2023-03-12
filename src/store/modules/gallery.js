@@ -3,7 +3,6 @@ import FAPI from '../../../api-path/api-path';
 
 const state = {
     gallery: [],
-    gallery_by_project:[],
     message: "",
     edited_gallery: {},
     gallery_details:{}

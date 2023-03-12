@@ -6,6 +6,12 @@
                     <p class="text-left text-xl font-semibold pb-6">View Gallery</p>
                     <DataTable ref="dt" :value="galleryData" dataKey="id" :paginator="true" :rows="5" paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[5,10,15]" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" responsiveLayout="scroll">
 
+                        <Column field="serial" header="#" style="width: 10%">
+                            <template #body="{data}">
+                                {{ galleryData.indexOf(data) + 1 }}
+                            </template>
+                        </Column>
+
                         <Column header="Project" :sortable="true" style="min-width:8rem">
                             <template #body="{data}">
                                 <p>{{ data.project.title }}</p>
