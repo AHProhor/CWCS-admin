@@ -25,7 +25,7 @@
                     <div class="pb-4">
                         <p class="pb-1 text-gray-500">Image</p>
                         <div class="flex items-center">
-                            <img v-if="slider.image" class="h-28 w-32" :src="slider.image">
+                            <img v-if="slider.image" class="h-28" :src="slider.image">
                             <input :class="slider.image ? 'ml-4' : 'ml-0'" type="file" accept="image/*" @change="uplaodImage">
                         </div>
                     </div>

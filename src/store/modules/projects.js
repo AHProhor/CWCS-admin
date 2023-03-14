@@ -50,8 +50,10 @@ const actions = {
         let response = await axios.post(FAPI.post_projects, 
             {
                 title: payload.title,
+                short_description: payload.short_description,
                 details: payload.details,
                 featured: payload.featured,
+                priority: payload.priority,
                 areaofwork: [payload.areaofwork],
                 image: payload.image
             }
@@ -77,6 +79,7 @@ const actions = {
                 short_description: payload.project.short_description,
                 details: payload.project.details,
                 image: payload.project.image,
+                priority: payload.priority,
                 areaofwork: [payload.project.areaofwork.id],
                 featured: payload.project.featured,
             }

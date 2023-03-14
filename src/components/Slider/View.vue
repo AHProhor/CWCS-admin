@@ -17,13 +17,13 @@
 
                         <Column :exportable="false" header="Image" :sortable="true" style="max-width:40rem">
                             <template #body="{data}">
-                                <img class="rounded-md w-36 h-28" :src="host + data.image" alt="">
+                                <img class="rounded-md h-28" :src="host + data.image" alt="">
                             </template>
                         </Column>
 
                         <Column header="Priority" :sortable="true" style="max-width:10rem">
                             <template #body="{data}">
-                                <InputText v-model="data.priority" placeholder="Priority"/>
+                                <InputText @keyup.enter="enterClicked(data)" v-model="data.priority" placeholder="Priority"/>
                             </template>
                         </Column>
 
@@ -112,6 +112,21 @@ export default {
                 }
             })
         },
+
+        enterClicked(data){
+            // console.log(data.id)
+            // console.log(data.priority)
+            this.$store.dispatch("slider/updatePriority", {id:data.id, priority:data.priority}).then(response => {
+                // console.log(response.data)
+                if(response.data.code == 200) { 
+                    this.$toast.add({severity: 'success', summary: 'Success!', detail:response.data.response, closable: false, life: 3000})
+                    this.deleteSliderDialog = false;
+                    this.temp_slider = {};
+                } else {
+                    this.$toast.add({severity: 'error', summary: 'Error!', detail: 'Something Wrong', closable: false, life: 3000})
+                }
+            }) 
+        }
     }
 }
 </script>

@@ -5,6 +5,7 @@
             <div class="bg-white text-left p-6 rounded-lg shadow-md 2xl:px-52">
                 <div class="pb-6">
                     <p class="text-xl font font-semibold pb-1">Edit Project</p>
+                    <p>{{ edit_project }}</p>
                 </div>
 
                 <div>
@@ -17,7 +18,7 @@
 
                     <div class="pb-4">
                         <p class="pb-1 text-gray-500">Short Description</p>
-                        <Textarea class="w-full" v-model="aow.short_description" :autoResize="true" rows="4" cols="30" />
+                        <Textarea type="text" class="w-full" v-model="edit_project.short_description" :autoResize="true" rows="4" cols="30" />
                     </div>
 
                     <div class="pb-4 flex w-full">
@@ -66,7 +67,7 @@
                     <div class="pb-4">
                         <p class="pb-1 text-gray-500">Image</p>
                         <div class="flex items-center">
-                            <img class="h-28 w-32" :src="show_image">
+                            <img class="h-28" :src="show_image">
                             <input class="ml-4" type="file" accept="image/*" @change="uploadImage">
                         </div>
                     </div>
@@ -164,14 +165,13 @@ export default {
     mounted() {
         this.$store.dispatch('projects/get_project_by_slug',this.slug),
         this.$store.dispatch('areaOfWork/get_AOW')
-        console.log(this.slug)
+        console.log(this.edit_project)
     },
 
     methods: {
         submit() {
-            // console.log(this.edit_project)  
             this.$store.dispatch('projects/edit_Projects', {project:this.edit_project, slug:this.slug}).then(response => {
-                console.log(response.data)    
+                // console.log(response.data)    
                 if(response.data.code == 200) { 
                     this.$toast.add({severity: 'success', summary: 'Success!', detail: response.data.response, closable: false, life: 3000})
                     setTimeout( ()=> this.$router.push('/projects/view'),3000)

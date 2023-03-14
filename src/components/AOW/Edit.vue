@@ -31,7 +31,7 @@
                     <div class="pb-4">
                         <p class="pb-1 text-gray-500">Image</p>
                         <div class="flex items-center">
-                            <img class="h-28 w-28" :src="show_image"> 
+                            <img class="h-28" :src="show_image"> 
                             <input :class="aow.image ? 'ml-4' : 'ml-0'" type="file" accept="image/*" @change="uplaodImage">
                         </div>
                     </div>

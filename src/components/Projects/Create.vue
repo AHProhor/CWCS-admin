@@ -66,7 +66,7 @@
                     <div class="pb-4">
                         <p class="pb-1 text-gray-500">Image</p>
                         <div class="flex items-center">
-                            <img v-if="project.image" class="h-28 w-32" :src="project.image">
+                            <img v-if="project.image" class="h-28" :src="project.image">
                             <input :class="project.image ? 'ml-4' : 'ml-0'" type="file" accept="image/*" @change="uploadImage">
                         </div>
                     </div>
@@ -176,7 +176,7 @@ export default {
                     this.project.details = ""
                     this.project.featured = null
                     this.project.areaofwork = null
-                    this.project.priority = ""
+                    this.project.priority = null
                     this.project.image = null
                 }
                 else {

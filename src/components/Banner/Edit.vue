@@ -15,7 +15,7 @@
                         <div class="pb-4">
                             <p class="pb-1 text-gray-500">Mid Banner Image</p>
                             <div class="flex items-center">
-                                <img v-if="show_mid_banner_image" class="h-28 w-32" :src="show_mid_banner_image">
+                                <img v-if="show_mid_banner_image" class="h-28" :src="show_mid_banner_image">
                                 <input :class="show_mid_banner_image ? 'ml-4' : 'ml-0'" type="file" accept="image/*" @change="uploadMidLayerImage">
                             </div>
                         </div>
@@ -27,7 +27,7 @@
                         <div class="pb-4">
                             <p class="pb-1 text-gray-500">Footer Image</p>
                             <div class="flex items-center">
-                                <img v-if="show_footer_image" class="h-28 w-32" :src="show_footer_image">
+                                <img v-if="show_footer_image" class="h-28" :src="show_footer_image">
                                 <input :class="show_footer_image ? 'ml-4' : 'ml-0'" type="file" accept="image/*" @change="uploadFooterImage">
                             </div>
                         </div>

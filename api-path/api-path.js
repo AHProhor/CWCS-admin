@@ -10,6 +10,7 @@ const FAPI = {
     'post_slider': host+'/home/slider-data/create',
     'get_slider': host+'/home/slider-data',
     'delete_slider': host+'/home/slider-data/delete/',
+    'update_priority': host+'/home/slider-data/update-priority/',
 
     // home 
     'create_home': host+'/home/create/',

@@ -3,8 +3,9 @@ import FAPI from '../../../api-path/api-path';
 
 const state = {
     sliderData: [],
-    slider:{}
-    // message:{}
+    slider:{},
+    edit_slider:null,
+    message:{}
 }
 
 const getters = {}
@@ -18,6 +19,9 @@ const mutations = {
     },
     DELETE_SLIDER (state, items) {
         state.message = items
+    },
+    EDIT_SLIDER (state, items) {
+        state.edit_slider = items
     },
 }
 
@@ -52,6 +56,22 @@ const actions = {
         let response = await axios.delete(FAPI.delete_slider + payload, config).then(result => {
             let items = result.data
             commit('DELETE_SLIDER', items)
+            dispatch('get_slider')
+            return result
+        })
+        return response
+    },
+
+    async updatePriority ({ commit, dispatch }, payload) {
+        let config=
+            {
+                headers:  { 'Authorization': 'Bearer ' + localStorage.getItem('access_token') }    
+            }
+            console.log(config)
+        let response = await axios.get(FAPI.update_priority + payload.id +"/"+ payload.priority, 
+            config).then(result => {
+            let items = result.data.data
+            commit('EDIT_SLIDER', items)
             dispatch('get_slider')
             return result
         })

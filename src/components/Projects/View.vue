@@ -51,8 +51,8 @@
                             <div class="flex">
                                 <div class="">
                                     <router-link :to="{path:'/projects/edit/'+slotProps.data.slug}">
-                                            <Button icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" @click="editAOW(slotProps.data)" />
-                                        </router-link>
+                                        <Button icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"/>
+                                    </router-link>
                                 </div>
                                 <div class="ml-2">
                                     <Button icon="pi pi-trash" class="p-button-rounded p-button-danger" @click="confirmDeleteProject(slotProps.data)" />
@@ -113,8 +113,10 @@ export default {
                 id: null,
                 title: "",
                 details: null,
+                short_description: "",
                 featured: 0,
                 areaOfWork:'',
+                priority: null,
                 image: null,
             },
             show_image: null,
@@ -140,31 +142,6 @@ export default {
                 this.temp_project_edit.image = e.target.result;
                 this.show_image = e.target.result;
             };
-        },
-        
-        editProject (project) {
-            this.temp_project_edit.slug = project.slug;
-            this.temp_project_edit.title = project.title;
-            this.temp_project_edit.details = project.details;
-            this.temp_project_edit.featured = project.featured;
-            this.show_image = this.host + project.image;
-            this.projectDialog = true;
-            console.log(project)
-            // this.submitted = true;
-        },
-
-        saveProject (project) {
-            console.log('update payload -->', project)
-            this.$store.dispatch("projects/edit_Projects", project).then(response => {
-                console.log(response.data.response)    
-                if(response.data.code == 200) { 
-                    this.$toast.add({severity: 'success', summary: 'Success!', detail: response.data.response, closable: false, life: 3000})
-                    this.hideDialog();
-                }
-                else {
-                    this.$toast.add({severity: 'error', summary: 'Error!', detail: response.data.response, closable: false, life: 3000})
-                }
-            })
         },
         
         hideDialog() {

@@ -19,12 +19,6 @@
                             </template>
                         </Column>
 
-                        <!-- <Column :exportable="false" header="Bottom Banner" :sortable="true" style="min-width:10rem">
-                            <template #body="{data}">
-                                <img class="rounded-md h-20 2xl:h-28" :src="host + data.mid_layer_image" alt="">
-                            </template>
-                        </Column> -->
-
                         <Column :exportable="false" header="Footer Banner" :sortable="true" style="min-width:10rem">
                             <template #body="{data}">
                                 <img class="rounded-md h-20 2xl:h-28" :src="host + data.footer_image" alt="">
@@ -45,7 +39,7 @@
                                 <div class="flex">
                                     <div class="">
                                         <router-link :to="{path:'/home/edit/'+slotProps.data.id}">
-                                            <Button icon="pi pi-pencil" class="p-button-rounded mr-2" id="background-button" />
+                                            <Button icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" id="background-button" />
                                         </router-link>
                                     </div>
                                     <div class="ml-2">
